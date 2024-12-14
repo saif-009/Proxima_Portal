@@ -1,5 +1,5 @@
 'use client'
-import Axios from "@/Axios/Axios";
+import Axios from "../Axios/Axios";
 import axios from "axios";
 import { createContext, useState, useEffect, ReactNode } from "react";
 

@@ -5,13 +5,13 @@ export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   
   // Check which portal is being accessed
-  const isAdminPortal = path.startsWith('/admin');
-  const isSellerPortal = path.startsWith('/seller');
+  const isAdminPortal = path.startsWith('/Admin');
+  const isSellerPortal = path.startsWith('/Seller');
   
   // Strip the portal prefix for easier path matching
   const strippedPath = isAdminPortal 
-    ? path.replace('/admin', '') 
-    : path.replace('/seller', '');
+    ? path.replace('/Admin', '') 
+    : path.replace('/Seller', '');
 
   // Define public paths for each portal
   const publicPaths = [
@@ -37,13 +37,13 @@ export function middleware(request: NextRequest) {
 
   // Redirect authenticated users trying to access public pages
   if (isPublicPath && token) {
-    const portalPrefix = isAdminPortal ? '/admin' : '/seller';
+    const portalPrefix = isAdminPortal ? '/Admin' : '/Seller';
     return NextResponse.redirect(new URL(`${portalPrefix}/dashboard`, request.url));
   }
 
   // Redirect unauthenticated users trying to access protected pages
   if (!isPublicPath && !token) {
-    const portalPrefix = isAdminPortal ? '/admin' : '/seller';
+    const portalPrefix = isAdminPortal ? '/Admin' : '/Seller';
     return NextResponse.redirect(new URL(`${portalPrefix}/login`, request.url));
   }
 
@@ -54,29 +54,29 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     // Admin Portal routes
-    '/admin/dashboard/:path*',
-    '/admin/products/:path*',
-    '/admin/product-categories/:path*',
-    '/admin/Sellers/:path*',
-    '/admin/analytics/:path*',
-    '/admin/reports/:path*',
-    '/admin/settings/:path*',
-    '/admin/login',
-    '/admin/signup',
-    '/admin/forgot-password',
-    '/admin/signup/signup-mobile',
+    '/Admin/dashboard/:path*',
+    '/Admin/products/:path*',
+    '/Admin/product-categories/:path*',
+    '/Admin/Sellers/:path*',
+    '/Admin/analytics/:path*',
+    '/Admin/reports/:path*',
+    '/Admin/settings/:path*',
+    '/Admin/login',
+    '/Admin/signup',
+    '/Admin/forgot-password',
+    '/Admin/signup/signup-mobile',
 
     // Seller Portal routes
-    '/seller/dashboard/:path*',
-    '/seller/products/:path*',
-    '/seller/product-categories/:path*',
-    '/seller/Sellers/:path*',
-    '/seller/analytics/:path*',
-    '/seller/reports/:path*',
-    '/seller/settings/:path*',
-    '/seller/login',
-    '/seller/signup',
-    '/seller/forgot-password',
-    '/seller/signup/signup-mobile',
+    '/Seller/dashboard/:path*',
+    '/Seller/products/:path*',
+    '/Seller/product-categories/:path*',
+    '/Seller/Sellers/:path*',
+    '/Seller/analytics/:path*',
+    '/Seller/reports/:path*',
+    '/Seller/settings/:path*',
+    '/Seller/login',
+    '/Seller/signup',
+    '/Seller/forgot-password',
+    '/Seller/signup/signup-mobile',
   ]
 };
