@@ -1,14 +1,14 @@
 "use client";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Progress } from "@/components/ui/progress";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../../../../../../components/ui/card";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "../../../../../../components/ui/dialog";
+import { Button } from "../../../../../../components/ui/button";
+import { Label } from "../../../../../../components/ui/label";
+import { Input } from "../../../../../../components/ui/input";
+import { Progress } from "../../../../../../components/ui/progress";
 import { useContext, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createWorkspaceApi, fetchWorkspaces } from "../../setting-page-api/SettingPageApi";
-import { settingsContext } from "@/context/settingContext";
+import { settingsContext } from "../../../../../../../context/settingContext";
 
 export default function ActivatedWorkspaces() {
   const queryClient = useQueryClient();

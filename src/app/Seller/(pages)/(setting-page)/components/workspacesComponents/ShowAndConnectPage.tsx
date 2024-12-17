@@ -1,13 +1,13 @@
 'use client'
 
-import Axios from '@/Axios/Axios'
+import Axios from '../../../../../../../Axios/Axios'
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion'
-import { Button } from '@/components/ui/button'
+} from '../../../../../../../components/ui/accordion'
+import { Button } from '../../../../../../../components/ui/button'
 import { RefreshCw, Trash2 } from 'lucide-react'
 import Image from 'next/image'
 import React, { useState } from 'react'

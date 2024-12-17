@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 'use client'
 
 import { useContext, useEffect, useState } from 'react'
@@ -25,7 +27,7 @@ import { settingsContext } from '../../../../../../../context/settingContext'
 import Axios from '../../../../../../../Axios/Axios'
 import SetPasswordDialog from './setpassword/SetPassword'
 import { fail } from 'assert'
-import { useToast } from '@/hooks/use-toast'
+import { useToast } from '../../../../../../../hooks/use-toast'
 import Image from 'next/image'
 
 export default function Details({ userData }: any) {

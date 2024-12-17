@@ -2,7 +2,7 @@
 'use client'
 
 import { useState, useRef, useCallback, useEffect } from 'react'
-import { useToast } from '@/components/ui/toaster'
+import { useToast } from '../../../../../../../components/ui/toaster'
 import { TimeBlock } from './services/adPreferencesService'
 
 interface AdScheduleProps {

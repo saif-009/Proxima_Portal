@@ -27,11 +27,11 @@ import {
 import { DropdownMenuRadioGroupDemo } from './dropDownMenu'
 import axios, { all } from 'axios'
 import { headers } from 'next/headers'
-import Axios from '@/Axios/Axios'
-import { settingsContext } from '@/context/settingContext'
+import Axios from '../../../../../Axios/Axios'
+import { settingsContext } from '../../../../../context/settingContext'
 import { useQuery } from '@tanstack/react-query'
 import { getAllCampaignData, getAllLeadsData } from './leadsApi/leadsApi'
-import LeadsSkelton from '@/utils/LeadsSkelton'
+import LeadsSkelton from '../../../../../utils/LeadsSkelton'
 // Mock data for campaigns and leads
 const campaigns = [
   { id: 1, name: 'Summer Sale 2023' },

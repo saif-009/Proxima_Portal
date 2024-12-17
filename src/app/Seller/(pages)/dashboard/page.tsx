@@ -1,5 +1,6 @@
+// @ts-nocheck
 'use client'
-
+ 
 import * as React from 'react'
 import {
   Card,
@@ -12,15 +13,15 @@ import { Badge } from '../../../../../components/ui/badge'
 import { useRouter } from 'next/navigation'
 import LeadGenerationFunnelDashboard from './components/LeadFlow'
 import LeadDistribution from './components/LeadDistribution'
-
+ 
 import { Switch } from '../../../../../components/ui/switch'
 import WalletDashboard from './components/WalletDashboard'
-
+ 
 // Import subDays to subtract 7 days
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import Image from 'next/image'
-
+ 
 import {
   Table,
   TableBody,
@@ -34,7 +35,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from '../../../../../components/ui/carousel'
-
+ 
 const metrics: MetricType[] = [
   {
     id: 'total_leads',
@@ -69,7 +70,7 @@ const metrics: MetricType[] = [
     imagePath: '/images/cost_per_lead.svg',
   },
 ]
-
+ 
 type MetricType = {
   id: string
   value: string | number
@@ -78,7 +79,7 @@ type MetricType = {
   time: string
   imagePath: string
 }
-
+ 
 const MetricCard = ({
   metric,
   index,
@@ -96,7 +97,7 @@ const MetricCard = ({
 }) => {
   return (
     <Card
-      className={`relative cursor-pointer transition-all h-full  ${
+      className={`relative cursor-pointer transition-all p-1 h-full   ${
         isSelected && isInSheet ? 'ring-2 ring-primary' : ''
       }`}
     >
@@ -155,13 +156,13 @@ const MetricCard = ({
     </Card>
   )
 }
-
+ 
 export default function Dashboard({ className }: any) {
   const [budgetUtilization, setBudgetUtilization] = React.useState<any>([])
   // const [metrics, setMetrics] = React.useState<any[]>([])
   const [selectedMetrics, setSelectedMetrics] = React.useState<string[]>([])
   const router = useRouter()
-
+ 
   //   const { data:dashboarddata, error:dashboardError, isLoading:dashboardLoading } = useQuery<any>({
   //     queryKey: ['alldashboardCampaigns', formatedDate],
   //     queryFn:() => GetDashboardData(formatedDate),
@@ -169,46 +170,46 @@ export default function Dashboard({ className }: any) {
   //     retry: 2,  // Only retry twice
   //     retryDelay: 1000 // Wait 1 second between retries
   // });
-
+ 
   //   const { data:BudgetUtilizationData, error:budgetUtilizationError, isLoading:budgetUtilizationLoading } = useQuery({
   //     queryKey: ['budgetutilization'],
   //     queryFn:() =>GetBudgetUtilizationData(),
   //     staleTime: 1000 * 30,
-
+ 
   //   });
-
+ 
   //   const { data:metadsgraph, error:metaadsgrapherror, isLoading:metaadsgraphLoading } = useQuery({
   //     queryKey: ['metaadsgraphdata', formatedDate],
   //     queryFn:() =>GetfacebookAds(formatedDate),
   //     staleTime: 1000 * 30,
-
+ 
   //   });
-
+ 
   // console.log("metadsgraph", metadsgraph)
-
+ 
   //   React.useEffect(()=>{
   //       if(dashboarddata?.totalCampaignData){
   //            setMetrics(dashboarddata?.totalCampaignData)
-
+ 
   //       }
-
+ 
   //   },[dashboarddata?.totalCampaignData])
-
+ 
   // // funnel
   // React.useEffect(()=>{
   //     if(dashboarddata?.funnelData?.all){
   //       setFunnelGraphData(dashboarddata?.funnelData?.all)
   //     }
-
+ 
   // }, [dashboarddata?.funnelData?.all])
-
+ 
   // // setformated date
   // React.useEffect(() => {
   //   const newFormattedDate = {
   //     from:date?.from?format(date?.from, 'yyyy-MM-dd'):date?.from,
   //     to:date?.to?format(date?.to, 'yyyy-MM-dd'):date?.from,
   //   };
-
+ 
   //   // Use prevState callback to avoid race conditions or unnecessary updates
   //   setFormatedDate((prevFormattedDate:any) => {
   //     if (
@@ -217,12 +218,12 @@ export default function Dashboard({ className }: any) {
   //     ) {
   //       return newFormattedDate;
   //     }
-
+ 
   //     // Return the previous state if no change is needed
   //     return prevFormattedDate;
   //   });
   // }, [date]);
-
+ 
   // //  Metric cards
   // React.useEffect(() => {
   //   if (totalSpendSection && totalSpendSection.length > 0) {
@@ -230,7 +231,7 @@ export default function Dashboard({ className }: any) {
   //     setSelectedMetrics(totalSpendSection.map((m) => m.id)) // Select all metrics by default
   //   }
   // }, [totalSpendSection])
-
+ 
   // const moveCard = React.useCallback(
   //   (dragIndex: number, hoverIndex: number) => {
   //     setMetrics((prevMetrics) => {
@@ -242,7 +243,7 @@ export default function Dashboard({ className }: any) {
   //   },
   //   [],
   // )
-
+ 
   const handleMetricToggle = (metricId: string) => {
     setSelectedMetrics((current) => {
       if (current.includes(metricId)) {
@@ -252,7 +253,7 @@ export default function Dashboard({ className }: any) {
       }
     })
   }
-
+ 
   const renderMetricCards = () => {
     const sortedMetrics = [...metrics].sort((a, b) => {
       const aSelected = selectedMetrics.includes(a.id)
@@ -260,11 +261,11 @@ export default function Dashboard({ className }: any) {
       if (aSelected === bSelected) return 0
       return aSelected ? -1 : 1
     })
-
+ 
     return (
       <div className="relative   w-full  overflow-hidden">
         <Carousel
-          className="w-full  "
+          className="w-full h-full   "
           opts={{
             align: 'start',
             loop: true,
@@ -296,7 +297,7 @@ export default function Dashboard({ className }: any) {
       </div>
     )
   }
-
+ 
   // const getBudgetUtilization = async () => {
   //   try {
   //     const res = await Axios.get('/get-budget-content')
@@ -309,31 +310,31 @@ export default function Dashboard({ className }: any) {
   //   } finally {
   //   }
   // }
-
+ 
   // React.useEffect(() => {
   //   getBudgetUtilization()
   // }, [])
-
+ 
   //   const handleAllFunnel = () => {
   //     console.log('all')
   //      const all:any = dashboarddata?.funnelData?.all || []
   //     setFunnelGraphData(all)
   //   }
-
+ 
   //   const handleGoogleFunnel = () => {
   //     console.log('google')
   //     const googledata:any = dashboarddata?.funnelData?.google || []
   //     setFunnelGraphData(googledata)
   //   }
-
+ 
   //   const handleFacebookFunnel = () => {
   //     const metadata:any = dashboarddata?.funnelData?.meta || []
   //     console.log('facebook')
   //     setFunnelGraphData(metadata)
   //   }
-
+ 
   //   console.log("dashboarddata", dashboarddata)
-
+ 
   // console.log("totalcamp", totalCampaign)
   return (
     <div className="">
@@ -351,19 +352,19 @@ export default function Dashboard({ className }: any) {
               Welcome Back!
             </div>
           </div>
-          <div className="flex lg:flex-row h-full gap-5 lg:gap-0 flex-col-reverse lg:items-start relative lg:space-x-4 mb-8 ">
-            <div className=" w-full flex-grow overflow-hidden  ">
+          <div className="flex lg:flex-row h-full gap-5 lg:gap-3 flex-col-reverse lg:items-start relative  mb-8 ">
+            <div className=" w-full   overflow-hidden  ">
               {/* {dashboardLoading ? (
                 <TotalSpendSectionSkeleton />
               ) : ( */}
               {renderMetricCards()}
-
+ 
               {/* )} */}
             </div>
             <div className="">
               <WalletDashboard />
             </div>
-
+ 
             {/* <Sheet>
               <SheetTrigger asChild>
                 <Button
@@ -455,9 +456,9 @@ export default function Dashboard({ className }: any) {
         {/*
        <div className='px-3'>
       <PerformanceDashboard pieChartData={dashboarddata?.pieChartData} forAnalytics={dashboarddata?.forAnalytics} formatedDate={formatedDate} metadsgraph={metadsgraph} />
-
+ 
        </div>
-
+ 
        <div className="flex md:flex-row flex-col justify-between md:items-stretch mb-8 gap-4 w-full  px-3">
          
          <DACDashboard />
@@ -485,9 +486,9 @@ export default function Dashboard({ className }: any) {
       
        </div>
         */}
-
+ 
         {/* Recent campaigns */}
-        {/* {dashboarddata?.campaignData?.length>0 && 
+        {/* {dashboarddata?.campaignData?.length>0 &&
      <>
      <div className='px-3'>
      <Card className="mb-8 px-3">
@@ -536,7 +537,7 @@ export default function Dashboard({ className }: any) {
         </Card>
       </div>    
       */}
-
+ 
         {/* </>}   */}
       </DndProvider>
     </div>

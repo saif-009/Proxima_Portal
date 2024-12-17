@@ -1,19 +1,20 @@
+// @ts-nocheck
 "use client"
 
 import { useState } from 'react'
 import { Eye, EyeOff } from 'lucide-react'
-import { Button } from "@/components/ui/button"
+import { Button } from "../../../../../../../../components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import Axios from '@/Axios/Axios'
-import { useToast } from '@/hooks/use-toast'
+} from "../../../../../../../../components/ui/dialog"
+import { Input } from "../../../../../../../../components/ui/input"
+import { Label } from "../../../../../../../../components/ui/label"
+import Axios from '../../../../../../../../Axios/Axios'
+import { useToast } from '../../../../../../../../hooks/use-toast'
 
 interface PasswordDialogProps {
   isOpen: boolean

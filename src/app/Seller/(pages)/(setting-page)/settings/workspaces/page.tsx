@@ -1,6 +1,6 @@
 'use client'
 
-import { settingsContext } from '@/context/settingContext'
+import { settingsContext } from '../../../../../../../context/settingContext'
 import React, { useContext } from 'react'
 import WorkSpaceManagement from '../../components/workSpaceManagement'
 

@@ -1,15 +1,15 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 // import { Button, CircularProgress } from '@shadcn';
-import { Button } from '@/components/ui/button';
-import { Input as TextField } from '@/components/ui/input';
+import { Button } from '../../../../../components/ui/button';
+import { Input as TextField } from '../../../../../components/ui/input';
 import { ArrowBigLeft as ArrowBack } from 'lucide-react';
 import Link from 'next/link';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import Axios from '@/Axios/Axios';
+import Axios from '../../../../../Axios/Axios';
 // import { InputOTP, InputOTPGroup, InputOTPSlot } from '@shadcn/ui';
-import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp';
+import { InputOTP, InputOTPGroup, InputOTPSlot } from '../../../../../components/ui/input-otp';
 import { useRouter } from 'next/navigation';
 import GenerateNewPassword from './components/GenerateNewPassword';
 

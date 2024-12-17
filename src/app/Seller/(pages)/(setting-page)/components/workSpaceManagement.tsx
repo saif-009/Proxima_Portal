@@ -1,9 +1,9 @@
 'use client'
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+import { Card, CardContent, CardHeader, CardTitle } from '../../../../../../components/ui/card'
+import { Button } from '../../../../../../components/ui/button'
+import { Input } from '../../../../../..//components/ui/input'
+import { Textarea } from '../../../../../../components/ui/textarea'
 import { CircleCheckBig, Trash2 } from 'lucide-react'
 import {
   Select,
@@ -11,10 +11,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import { Switch } from '@/components/ui/switch'
-import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+} from '../../../../../../components/ui/select'
+import { Switch } from '../../../../../../components/ui/switch'
+import { Badge } from '../../../../../../components/ui/badge'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../../../../components/ui/tabs'
 import {
   Dialog,
   DialogContent,
@@ -22,7 +22,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
+} from '../../../../../../components/ui/dialog'
 import {
   PlusCircle,
   Zap,
@@ -39,10 +39,10 @@ import axios from 'axios'
 import Integrations from './workspacesComponents/Integrations'
 import Members from './workspacesComponents/Members'
 import AdPreferences from './workspacesComponents/AdPreferences'
-import Axios from '@/Axios/Axios'
-import { settingsContext } from '@/context/settingContext'
+import Axios from '../../../../../../Axios/Axios'
+import { settingsContext } from '../../../../../../context/settingContext'
 import AdPreferences2 from './workspacesComponents/AdPreferences2'
-import { useToast } from '@/hooks/use-toast'
+import { useToast } from '../../../../../../hooks/use-toast'
 
 export default function WorkSpaceManagement({allWorkSpace}:any) {
   const { getAllWorkSpace, getUserDetails, userDetails, tokens } = useContext<any>(settingsContext)

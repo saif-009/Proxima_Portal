@@ -3,9 +3,8 @@
 import React, { useEffect } from "react";
 import { Facebook } from "lucide-react";
 import Cookies from "js-cookie";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../../../../../../components/ui/button";
 import { RefreshCw } from 'lucide-react'
-import ButtonLoader from "@/components/ButtonLoader";
 
 // Define a TypeScript interface for the props
 interface ConnectToFacebookProps {
@@ -85,7 +84,7 @@ const ConnectToFacebook = ({ handelClientsPage, fetchFbPageLoad, text }:any) => 
                 
              {/* {!fetchFbPageLoad && <Facebook style={{ marginRight: 2 }} />} */}
                 {fetchFbPageLoad ? (
-                    <> <span>Link Ad A/C</span> &nbsp;<ButtonLoader/></>
+                    <> <span>Link Ad A/C</span> &nbsp;</>
                 ) :'Link Ad A/C'}
                                
                 </Button>

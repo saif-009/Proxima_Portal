@@ -2,13 +2,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import Axios from '@/Axios/Axios'
-import { activeAccountAtom } from '@/store/activeAdAccount' 
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "../../../../../../../components/ui/dialog"
+import { Button } from "../../../../../../../components/ui/button"
+import { RadioGroup, RadioGroupItem } from "../../../../../../../components/ui/radio-group"
+import { Label } from "../../../../../../../components/ui/label"
+import { Card, CardHeader, CardTitle, CardContent } from "../../../../../../../components/ui/card"
+import Axios from '../../../../../../../Axios/Axios'
+import { activeAccountAtom } from '../../../../../../../store/activeAdAccount' 
 
 
 // interface Account {

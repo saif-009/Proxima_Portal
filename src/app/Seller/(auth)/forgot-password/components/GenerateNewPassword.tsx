@@ -1,13 +1,15 @@
+// @ts-nocheck
+
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 // import axios from '../Axios'; // Assuming Axios instance is set up
-import { Input } from '@/components/ui/input'; // Assuming you're using ShadCN's components
-import { Button } from '@/components/ui/button';
-import Axios from '@/Axios/Axios';
-import { useToast } from '@/hooks/use-toast';
+import { Input } from '../../../../../../components/ui/input'; // Assuming you're using ShadCN's components
+import { Button } from '../../../../../../components/ui/button';
+import Axios from '../../../../../../Axios/Axios';
+import { useToast } from '../../../../../../hooks/use-toast';
 
 function GenerateNewPassword({ emailData, token }:any) {
   const [showPasswordNew, setShowPasswordNew] = useState(false);

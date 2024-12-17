@@ -1,13 +1,13 @@
 "use client"
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Card, CardContent, CardHeader, CardTitle } from "../../../../../../../components/ui/card"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../../../../../../../components/ui/dialog"
 import { Chrome, Facebook, Trash2 } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import googleicon from '../../../../../../public/google icon.svg'
+import { Button } from "../../../../../../../components/ui/button"
+// import googleicon from '../../../../../../public/google icon.svg'
 // import ConnectToFacebook from './ConnectToFacebook'
 
-import Axios from '@/Axios/Axios'
+import Axios from '../../../../../../../Axios/Axios'
 const ConnectToFacebook = dynamic(
   () => import('./ConnectToFacebook'),
   { ssr: false }
@@ -15,18 +15,18 @@ const ConnectToFacebook = dynamic(
 
 import ShowAndConnectPage from './ShowAndConnectPage'
 import LinkAdAccounts from './LinkAddAccounts'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../../../../../components/ui/select"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../../../../../../../components/ui/accordion"
 import { RefreshCw } from 'lucide-react'
-import { settingsContext } from '@/context/settingContext'
+import { settingsContext } from '../../../../../../../context/settingContext'
 import dynamic from 'next/dynamic'
 import GoogleAdsIntegration from './google-integration/GoogleIntegration'
 import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
 import ActivatedAdAccountPopup from './ActivatedAdAccountPopup'
-import {RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import {RadioGroup, RadioGroupItem } from '../../../../../../../components/ui/radio-group'
 import { string } from 'yup'
-import { activeAccountAtom } from '@/store/activeAdAccount'
+import { activeAccountAtom } from '../../../../../../../store/activeAdAccount'
 import { useRecoilState } from 'recoil'
 
 const accesstoken = "EAAO9e3ZAvFL4BOZB27xWdxu0748iTOUxSbsFMDc0yrCUUUHfgEZCQyOvxnAzdpD2c6HEjMHZBqFW3WAZCjmKIYQAU7iGGpeARKbkKFkr6VAGOnCNFd4r3XYhSAwTF1aILg5ZCsHGXGyZC7v8sxzxgaxd0jjdPckRZAD1wILTIaxEpmKZCxka8Txup1t3iAbB1jzSwD2uzZB4ncSIp3rWRzDLYZD"
@@ -334,7 +334,7 @@ useEffect(()=>{
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Image src={googleicon} width={30} height={30} alt="google icon" />
+              {/* <Image src={googleicon} width={30} height={30} alt="google icon" /> */}
               Google Integration
             </CardTitle>
           </CardHeader>

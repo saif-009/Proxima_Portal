@@ -2,12 +2,12 @@
 'use client'
 
 import React, { useState, useEffect , useContext} from 'react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { Button } from '../../../../../../../components/ui/button'
+import { Card, CardContent } from '../../../../../../../components/ui/card'
+import { Checkbox } from '../../../../../../../components/ui/checkbox'
+import { Input } from '../../../../../../../components/ui/input'
+import { Label } from '../../../../../../../components/ui/label'
+import { RadioGroup, RadioGroupItem } from '../../../../../../../components/ui/radio-group'
 
 import {
   Select,
@@ -15,14 +15,14 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import { Switch } from '@/components/ui/switch'
-import { Separator } from '@/components/ui/separator'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { useToast } from '@/components/ui/toaster'
+} from '../../../../../../../components/ui/select'
+import { Switch } from '../../../../../../../components/ui/switch'
+import { Separator } from '../../../../../../../components/ui/separator'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../../../../../components/ui/tabs'
+import { useToast } from '../../../../../../../components/ui/toaster'
 import GoogleAdsSchedular from './googleAdSchedular'
-import googleIcon from '@/../public/google icon.svg'
-import metaIcon from '@/../public/meta icon.svg'
+// import googleIcon from '../../../../../../../../public/google icon.svg'
+// import metaIcon from '../../../../../../../../public/meta icon.svg'
 import Image from 'next/image'
 import {  
   AdPreferencesFormData,
@@ -33,7 +33,7 @@ import {
   WEBSITE_OPTIONS,
   AWARENESS_OPTIONS,
 } from './services/adPreferencesService'
-import { settingsContext } from '@/context/settingContext'
+import { settingsContext } from '../../../../../../../context/settingContext'
 
 export default function AdPreferences2({activeWorkspace}) {
   const { toast } = useToast()
@@ -162,11 +162,11 @@ export default function AdPreferences2({activeWorkspace}) {
     <Tabs defaultValue="meta">
       <TabsList className="mb-4">
         <TabsTrigger value="meta">
-          <Image src={metaIcon} alt="" height={20} width={20} />
+          {/* <Image src={metaIcon} alt="" height={20} width={20} /> */}
           <span className="ml-2">Meta</span>
         </TabsTrigger>
         <TabsTrigger value="google">
-          <Image src={googleIcon} alt="" height={20} width={20} />
+          {/* <Image src={googleIcon} alt="" height={20} width={20} /> */}
           <span className="ml-2">Google</span>
         </TabsTrigger>
       </TabsList>

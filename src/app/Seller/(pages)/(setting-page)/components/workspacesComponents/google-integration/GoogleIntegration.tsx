@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button } from '../../../../../../../../components/ui/button';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+} from "../../../../../../../../components/ui/select";
+import { RadioGroup, RadioGroupItem } from '../../../../../../../../components/ui/radio-group';
 import { Loader2 } from 'lucide-react';
-import Axios from '@/Axios/Axios';
+import Axios from '../../../../../../../../Axios/Axios';
 
 interface GoogleCustomer {
   descriptiveName: string;
@@ -196,17 +196,17 @@ const GoogleAdsIntegration: React.FC<Props> = ({
 export default GoogleAdsIntegration;
 
 /*import React, { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button } from '../../../../../../../../components/ui/button';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+} from "../../../../../../../../components/ui/select";
+import { RadioGroup, RadioGroupItem } from '../../../../../../../../components/ui/radio-group';
 import { Loader2 } from 'lucide-react';
-import Axios from '@/Axios/Axios';
+import Axios from '../../../../../../../../Axios/Axios';
 
 const GoogleAdsIntegration = ({ 
   accessibleAccounts = [], 

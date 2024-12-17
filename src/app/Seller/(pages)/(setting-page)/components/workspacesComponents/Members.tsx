@@ -2,7 +2,7 @@
 
 import React, { useContext, useEffect, useState } from 'react'
 import InviteTeamMemberPopup from './InviteTeamMember'
-import { settingsContext } from '@/context/settingContext'
+import { settingsContext } from '../../../../../../../context/settingContext'
 
 
 function Members({teamsDetails, activeWorkspace, getWorkSpaceDetails}:any) {

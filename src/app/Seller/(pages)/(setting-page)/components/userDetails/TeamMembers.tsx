@@ -7,7 +7,7 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
-} from "@/components/ui/card";
+} from "../../../../../../components/ui/card";
 import {
   Dialog,
   DialogTrigger,
@@ -16,26 +16,26 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+} from "../../../../../../components/ui/dialog";
+import { Button } from "../../../../../../components/ui/button";
+import { Label } from "../../../../../../components/ui/label";
+import { Input } from "../../../../../../components/ui/input";
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "@/components/ui/select";
+} from "../../../../../../components/ui/select";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { addTeamMember, fetchTeamMembers, removeTeamMember } from "../../setting-page-api/SettingPageApi";
-import { settingsContext } from "@/context/settingContext";
+import { settingsContext } from "../../../../../../../context/settingContext";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "../../../../../../components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
-import { ToastAction } from "@/components/ui/toast";
+import { ToastAction } from "../../../../../../components/ui/toast";
 
 // Define Zod schema for form validation
 const teamMemberSchema = z.object({

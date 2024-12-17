@@ -3,7 +3,7 @@
 import * as React from 'react'
 import { Circle } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
+import { Button } from '../../../../../components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +12,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from '../../../../../components/ui/dropdown-menu'
 
 const bucketOptions = [
   { value: 'Interested - details shared', color: '#22c55e' }, // green-500

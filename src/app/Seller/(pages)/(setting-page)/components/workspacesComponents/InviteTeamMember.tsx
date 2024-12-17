@@ -1,16 +1,16 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Button } from "@/components/ui/button"
+import { Button } from "../../../../../../../components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "../../../../../../../components/ui/dialog"
 import { UserPlus, Users } from "lucide-react"
-import Axios from '@/Axios/Axios'
+import Axios from '../../../../../../../Axios/Axios'
 
 
 

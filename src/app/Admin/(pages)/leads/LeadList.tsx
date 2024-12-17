@@ -1,10 +1,10 @@
 //@ts-nocheck
 
 import { useTheme } from 'next-themes'
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { ScrollArea } from "../../../../../components/ui/scroll-area"
+import { Card, CardContent } from "../../../../../components/ui/card"
+import { Button } from "../../../../../components/ui/button"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../../../../components/ui/tooltip"
 import { PhoneIcon, CalendarIcon } from "lucide-react"
 
 const qualityOptions = ["Irrelevant", "Relevant", "Warm", "Hot"]

@@ -1,18 +1,18 @@
 
 "use client"
 import { useState, useMemo, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "../../../../../components/ui/button"
+import { Label } from "../../../../../components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../../../components/ui/select"
+import { Card, CardContent, CardHeader, CardTitle } from "../../../../../components/ui/card"
 import { BarChartIcon} from "lucide-react"
 import LeadList from "./LeadList"
 import LeadDetails from "./LeadDetails"
 import { useTheme } from "next-themes"
-import { settingsContext } from '@/context/settingContext'
+import { settingsContext } from '../../../../../context/settingContext'
 import { useQuery } from '@tanstack/react-query'
 import { getAllCampaignData, getAllLeadsData } from './leadsApi/leadsApi'
-import Axios from "@/Axios/Axios"
+import Axios from "../../../../../Axios/Axios"
 import LeadSkeleton from "./lead-skeleton/LeadSkeleton"
 
 const campaigns = [

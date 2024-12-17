@@ -7,7 +7,7 @@ import { ArrowBigLeft as ArrowBack } from 'lucide-react';
 import Link from 'next/link';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import Axios from '@/Axios/Axios';
+import Axios from '../../../../../Axios/Axios';
 // import { InputOTP, InputOTPGroup, InputOTPSlot } from '@shadcn/ui';
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp';
 import { useRouter } from 'next/navigation';
