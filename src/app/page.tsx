@@ -5,19 +5,17 @@ import Image from 'next/image'
 export default function Home() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-black ">
-      <div className='flex items-center justify-center w-1/2'>
+      <div className="flex items-center justify-center w-1/2">
         <Image
-        src={bg}
-        alt="Background"
-        className="object-cover z-0"
-        quality={100}
-      />
+          src={bg}
+          alt="Background"
+          className="object-cover z-0"
+          quality={100}
+        />
       </div>
-      
+
       <div className="flex flex-col items-center justify-center w-1/2">
-        <h1 className="text-4xl font-bold mb-8 text-white">
-          Welcome 
-        </h1>
+        <h1 className="text-4xl font-bold mb-8 text-white">Welcome</h1>
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
             href="/Seller/login"

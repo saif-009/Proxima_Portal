@@ -22,7 +22,7 @@ export default function LogoutPopup({ isCollapsed }: any) {
 const handleLogout = async () => {
   console.log('tapping to logout')
   try {
-    Cookies.remove('token')
+    Cookies.remove('admin_token')
     console.log('Token removed')
     localStorage.removeItem('dateRangeOption')
     localStorage.removeItem('dateRange')
@@ -30,8 +30,7 @@ const handleLogout = async () => {
     setOpen(false)
     
     // Remove the window.location.reload() and await the router push
-    await router.push('/login')
-    console.log('Router push completed')
+    await router.push('/')
   } catch (error) {
     console.error('Error during logout:', error)
   }

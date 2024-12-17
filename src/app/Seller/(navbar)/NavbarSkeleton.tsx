@@ -13,7 +13,7 @@ export default function SidebarSkeleton({ className = '' }: { className?: string
   return (
     <aside
       className={`${
-        isCollapsed ? 'w-[4.5rem]' : 'w-48'
+        isCollapsed ? 'w-[4.5rem]' : 'w-40'
       } h-screen p-4 pt-0 flex flex-col justify-between rounded-xl dark:border-none dark:shadow-md border-r-2 transition-all duration-300 ${className}`}
     >
       <div>

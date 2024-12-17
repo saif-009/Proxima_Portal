@@ -153,7 +153,7 @@ export default function Login() {
         const res = await Axios.post('/verify-login', body)
         if (res.status === 200 && res?.data?.valid) {
           const token = res.data.token
-          Cookies.set('token', token, { expires: 7 })
+          Cookies.set('seller_token', token, { expires: 7 })
           toast({
             title: 'Success',
             description: res?.data?.message,
@@ -235,7 +235,7 @@ export default function Login() {
         console.log('response', res)
         if (res.status === 200 && res?.data?.valid) {
           const token = res?.data?.token
-          Cookies.set('token', token, { expires: 14 })
+          Cookies.set('seller_token', token, { expires: 14 })
           console.log('toast will token', token)
           toast({
             title: 'Success',

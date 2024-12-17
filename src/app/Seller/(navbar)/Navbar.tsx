@@ -75,7 +75,7 @@ export default function Component({ className = '' }) {
   return (
     <aside
       className={`${
-        isCollapsed ? 'md:w-[4.5rem] w-0 absolute md:relative bg-white dark:bg-black z-50 ' : 'w-48  absolute md:relative bg-white dark:bg-black z-50'
+        isCollapsed ? 'md:w-[4.5rem] w-0 absolute md:relative bg-white dark:bg-black z-50 ' : 'md:w-40 lg:w-44  absolute md:relative bg-white dark:bg-black z-50'
       } h-screen md:p-4 pt-0 md:flex hidden flex-col justify-between rounded-xl dark:border-none dark:shadow-md border-r-2 transition-all duration-300 ${className}`}
     >
       <div>

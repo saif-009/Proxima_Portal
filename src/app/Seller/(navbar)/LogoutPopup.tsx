@@ -20,11 +20,11 @@ export default function LogoutPopup({isCollapsed}:any) {
   const router = useRouter()
 
   const handleLogout = () => {
-    Cookies.remove('token')
+    Cookies.remove('seller_token')
     localStorage.removeItem('dateRangeOption');
     localStorage.removeItem('dateRange');
     setOpen(false)
-    router.push('/login')
+    router.push('/')
     window.location.reload()
   }
 

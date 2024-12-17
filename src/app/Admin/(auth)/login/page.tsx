@@ -10,9 +10,18 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from '../../../../../components/ui/input-otp'
-import { Card, CardContent, CardFooter } from '../../../../../components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardFooter,
+} from '../../../../../components/ui/card'
 import { Label } from '../../../../../components/ui/label'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../../../components/ui/tabs'
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '../../../../../components/ui/tabs'
 import { Input } from '../../../../../components/ui/input'
 import Axios from '../../../../../Axios/Axios'
 import Link from 'next/link'
@@ -21,6 +30,9 @@ import { z } from 'zod'
 import Image from 'next/image'
 
 import { useToast } from '../../../../../hooks/use-toast'
+// import { useToast } from "../../../../../components/ui/use-toast"
+import { ToastAction } from "@/components/ui/toast"
+import { Toaster } from "@/components/ui/toaster"
 
 const mobileSchema = z.object({
   mobileNumber: z
@@ -52,6 +64,7 @@ export default function Login() {
   const [tabActive, setTabActive] = useState('mobile')
   const router = useRouter()
   const { toast } = useToast()
+  //  const { toast } = useToast()
 
   const sendOTP = async (e?: React.FormEvent) => {
     if (e) e.preventDefault()
@@ -153,7 +166,7 @@ export default function Login() {
         const res = await Axios.post('/verify-login', body)
         if (res.status === 200 && res?.data?.valid) {
           const token = res.data.token
-          Cookies.set('token', token, { expires: 7 })
+          Cookies.set('admin_token', token, { expires: 7 })
           toast({
             title: 'Success',
             description: res?.data?.message,
@@ -220,6 +233,7 @@ export default function Login() {
     ResendOTP()
   }
 
+  // Modified handleLoginByEmail function
   const handleLoginByEmail = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -231,31 +245,40 @@ export default function Login() {
       emailSchema.parse({ email, password })
       try {
         const res = await Axios.post('/login-user', { email, password })
-        console.log('email and password are valid', email, password)
-        console.log('response', res)
+
         if (res.status === 200 && res?.data?.valid) {
           const token = res?.data?.token
-          Cookies.set('token', token, { expires: 14 })
-          console.log('toast will token', token)
+          console.log('should trigger toast')
+          // First show toast
           toast({
             title: 'Success',
             description: res?.data?.message,
           })
-          router.push('/Admin/dashboard')
-          
+
+          // Then set cookie
+          Cookies.set('admin_token', token, { expires: 14 })
+
+          // Add a small delay before navigation to allow toast to show
+          setTimeout(() => {
+            router.push('/Admin/dashboard')
+          }, 1000)
         } else {
-          toast({ title: 'Error', description: res?.data?.message })
+          toast({
+            title: 'Error',
+            description: res?.data?.message,
+            duration: 3000, // Ensure toast stays visible
+          })
         }
       } catch (error) {
-        ;('error')
-        toast({ title: 'Error', description: 'Server error' })
-      } finally {
-        setLoginLoading(false)
+        toast({
+          title: 'Error',
+          description: 'Server error',
+          duration: 3000,
+        })
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
         error.errors.forEach((err) => {
-          setLoginLoading(true)
           if (err.path[0] === 'email') setEmailError(err.message)
           if (err.path[0] === 'password') setPasswordError(err.message)
         })
@@ -264,11 +287,11 @@ export default function Login() {
       setLoginLoading(false)
     }
   }
- 
+
   return (
     <div className="w-full px-12 bg-white md:px-14 md:mt-10 rounded-md  ">
-      <div className="space-y-1">
-        <h2 className="text-2xl font-semibold">Login</h2>
+      <div className="space-y-1 ">
+        <h2 className="text-2xl font-semibold text-black">Login</h2>
       </div>
 
       <div className="space-y-4 bg-white mt-6">
@@ -477,6 +500,7 @@ export default function Login() {
           </TabsContent>
         </Tabs>
       </div>
+       <Toaster />
     </div>
   )
 }

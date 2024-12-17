@@ -9,7 +9,7 @@ const WalletDashboard = () => {
   const gradientColor1 = ['#AC56FF']
 	const gradientColor2 = ['#00CEDB']
   return (
-    <Card className="h-full w-full " style={{
+    <Card className="h-full w-full overflow-hidden " style={{
       background: `linear-gradient(45deg, ${gradientColor1}60 5%, var(--center-color), ${gradientColor2}70 100%)`,
     }}>
       <CardContent className="flex items-center justify-between h-full p-4 space-x-4">
@@ -56,7 +56,7 @@ const WalletDashboard = () => {
           </ChartContainer>
         </div>
 
-        <div className="flex flex-col justify-center flex-shrink-0 space-y-1">
+        <div className="flex flex-col justify-center  space-y-1">
           <div className="text-xs text-muted-foreground flex flex-col">
             <span>Spent</span>
             <span className="font-medium">₹15,000</span>
