@@ -1,3 +1,4 @@
+
 'use client'
 import React, { useEffect, useState } from 'react'
 import {
@@ -109,6 +110,7 @@ const CostPerLeadTrends = () => {
                     tick={{ 
                       fill: '#4b5563',
                       fontSize: isMobile ? 10 : 12,
+                      // @ts-ignore
                       angle: isMobile ? -45 : 0,
                       textAnchor: isMobile ? 'end' : 'middle',
                       dx: isMobile ? -8 : 0,
