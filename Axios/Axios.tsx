@@ -15,7 +15,7 @@ const Axios = axios.create({
 
 // Intercept request to add token
 Axios.interceptors.request.use((config) => {
-  const token = Cookies.get('token'); // Get token from cookies
+  const token = Cookies.get('seller_token'); // Get token from cookies
   if (token) {
     config.headers['Authorization'] = `${token}`;
   }

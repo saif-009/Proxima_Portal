@@ -107,7 +107,7 @@ export default function Component({ className = '' }) {
               />
             </div>
           )}
-          <Button
+          {/* <Button
             onClick={toggleSidebar}
             variant="ghost"
             className="p-0 px-2 justify-center absolute -right-10 z-[1000] dark:bg-[#171717] bg-[#F0F3F6] border border-1"
@@ -117,7 +117,7 @@ export default function Component({ className = '' }) {
             ) : (
               <ChevronLeft className="h-5 w-5 z-10" />
             )}
-          </Button>
+          </Button> */}
         </div>
         {/* Rest of the component remains the same
        {!isCollapsed && (

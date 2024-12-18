@@ -3,6 +3,7 @@
 import * as React from 'react'
 import { useRouter } from 'next/navigation'
 import { Bell, ChevronDown, PanelsTopLeft } from 'lucide-react'
+import { useTheme } from 'next-themes'
 
 import { Button } from '../../../../components/ui/button'
 import {
@@ -33,21 +34,27 @@ interface HeaderProps {
 // Dummy Data
 const DUMMY_WORKSPACES: Workspace[] = [
   { id: 'ws1', name: 'Netsurf Admin Workspace' },
-  
 ]
 
 export default function Header({ className, userName = 'Nidhaan' }: HeaderProps) {
   const router = useRouter()
+  const { theme } = useTheme()
   
   // State
   const [selectedWorkspace, setSelectedWorkspace] = React.useState<string>('')
+  const [mounted, setMounted] = React.useState(false)
   
   // Effects
   React.useEffect(() => {
+    setMounted(true)
     if (!selectedWorkspace && DUMMY_WORKSPACES.length > 0) {
       setSelectedWorkspace(DUMMY_WORKSPACES[0].id)
     }
   }, [])
+
+  if (!mounted) {
+    return null
+  }
 
   // Handlers
   const handleWorkspaceChange = (workspaceId: string) => {
@@ -68,7 +75,7 @@ export default function Header({ className, userName = 'Nidhaan' }: HeaderProps)
         value={selectedWorkspace}
         onValueChange={handleWorkspaceChange}
       >
-        <SelectTrigger className="bg-transparent text-white hover:bg-gray-800 focus:ring-0 w-[200px] lg:w-[200px] md:w-[180px] sm:w-[150px] hidden md:flex items-center justify-between">
+        <SelectTrigger className="bg-transparent dark:text-white text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 focus:ring-0 w-[200px] lg:w-[200px] md:w-[180px] sm:w-[150px] hidden md:flex items-center justify-between">
           <SelectValue placeholder="Select Overview" />
         </SelectTrigger>
         <SelectContent>
@@ -84,7 +91,7 @@ export default function Header({ className, userName = 'Nidhaan' }: HeaderProps)
       </Select>
 
       {/* Theme Toggle */}
-      <div className="[&>button]:bg-transparent [&>button]:border-none [&>button]:text-white [&>button:hover]:bg-gray-800 hidden sm:block">
+      <div className="[&>button]:bg-transparent [&>button]:border-none [&>button]:dark:text-white [&>button]:text-gray-800 [&>button:hover]:bg-gray-100 [&>button:hover]:dark:bg-gray-800 hidden sm:block">
         <ModeToggle />
       </div>
 
@@ -92,7 +99,7 @@ export default function Header({ className, userName = 'Nidhaan' }: HeaderProps)
       <Button
         variant="ghost"
         size="icon"
-        className="text-white hover:bg-gray-800 hidden sm:flex"
+        className="dark:text-white text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 hidden sm:flex"
       >
         <Bell className="h-5 w-5" />
         <span className="sr-only">Notifications</span>
@@ -110,9 +117,9 @@ export default function Header({ className, userName = 'Nidhaan' }: HeaderProps)
   )
 
   return (
-    <header className="flex justify-between items-center sticky top-0 px-2 sm:px-4 py-4 h-16 z-40 bg-black text-white border border-b-gray-200/20 border-l-0">
+    <header className="flex justify-between items-center sticky top-0 px-2 sm:px-4 py-4 h-16 z-40 bg-white dark:bg-black text-gray-800 dark:text-white border-b dark:border-gray-200/20 border-gray-200 border-l-0">
       {/* Left side - Greeting */}
-      <div className="flex items-end gap-2  ml-12 lg:ml-4">
+      <div className="flex items-end gap-2 ml-12 lg:ml-4">
         <span className="font-inter text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#FE6515] to-[#AC56FF] bg-clip-text text-transparent">
           Hey {userName}
         </span>
@@ -124,18 +131,18 @@ export default function Header({ className, userName = 'Nidhaan' }: HeaderProps)
         {/* Mobile Menu */}
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="md:hidden text-white hover:bg-gray-800">
+            <Button variant="ghost" size="icon" className="md:hidden dark:text-white text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800">
               <PanelsTopLeft className="h-6 w-6" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-black text-white">
+          <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-white dark:bg-black text-gray-800 dark:text-white">
             <div className="flex flex-col gap-4 mt-8">
               {/* Mobile Overview Selector */}
               <Select
                 value={selectedWorkspace}
                 onValueChange={handleWorkspaceChange}
               >
-                <SelectTrigger className="bg-transparent text-white hover:bg-gray-800 focus:ring-0 w-full">
+                <SelectTrigger className="bg-transparent dark:text-white text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 focus:ring-0 w-full">
                   <SelectValue placeholder="Select Overview" />
                 </SelectTrigger>
                 <SelectContent>
@@ -151,15 +158,15 @@ export default function Header({ className, userName = 'Nidhaan' }: HeaderProps)
               </Select>
 
               {/* Mobile Theme Toggle */}
-              <div className="[&>button]:bg-transparent [&>button]:border-none [&>button]:text-white [&>button:hover]:bg-gray-800 sm:hidden">
-                <ModeToggle /> 
+              <div className="[&>button]:bg-transparent [&>button]:border-none [&>button]:dark:text-white [&>button]:text-gray-800 [&>button:hover]:bg-gray-100 [&>button:hover]:dark:bg-gray-800 sm:hidden">
+                <ModeToggle />
               </div>
 
               {/* Mobile Notifications */}
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-white hover:bg-gray-800 sm:hidden"
+                className="dark:text-white text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 sm:hidden"
               >
                 <Bell className="h-5 w-5" />
                 <span className="sr-only">Notifications</span>

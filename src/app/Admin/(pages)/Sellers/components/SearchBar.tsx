@@ -10,10 +10,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, setSearchTerm 
         placeholder="Search by seller name, reference, contact info..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="pl-10 bg-gray-800 border-gray-700 text-gray-100 placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+        className="pl-10 dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-200 
+        dark:text-gray-100 text-gray-900 dark:placeholder-gray-400 placeholder-gray-500 
+        focus:ring-2 focus:ring-purple-500 focus:border-transparent"
       />
       <Search
-        className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+        className="absolute left-3 top-1/2 transform -translate-y-1/2 dark:text-gray-400 text-gray-500"
         size={18}
       />
     </div>

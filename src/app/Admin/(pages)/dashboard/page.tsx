@@ -19,7 +19,7 @@ export default function Dashboard({ className }: { className?: string }) {
   })
 
   return (
-    <div className="bg-[#000000] pt-2 pl-2">
+    <div className="bg-gray-50 dark:bg-[#000000] pt-2 pl-2">
       <div className="flex justify-end my-4 space-x-4 px-3">
         <DateRangePicker
           date={date}

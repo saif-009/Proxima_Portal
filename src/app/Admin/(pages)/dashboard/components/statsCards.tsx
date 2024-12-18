@@ -18,10 +18,11 @@ import costperlead_icon from "../../../../../../public/icon_saif/costperlead_ico
 import leadgenerated_icon from "../../../../../../public/icon_saif/leadgenerated_icon.svg";
 import spend_icon from "../../../../../../public/icon_saif/spend_icon.svg";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 
 interface ChartDataPoint {
   day: string;
-  [key: string]: string | number; // Allow dynamic data keys
+  [key: string]: string | number;
 }
 
 interface MetricsCardProps {
@@ -41,7 +42,7 @@ export function Component({
   changePercentage,
   dataKey = "spend",
 }: MetricsCardProps) {
-  // Find the maximum value
+  const { theme } = useTheme();
   const maxValue = Math.max(...data.map(item => Number(item[dataKey])));
 
   const chartConfig = {
@@ -51,7 +52,6 @@ export function Component({
     },
   } satisfies ChartConfig;
 
-  // Custom bar component to handle opacity
   const CustomBar = (props: any) => {
     const { fill, x, y, width, height, value } = props;
     const opacity = value === maxValue ? 1 : 0.3;
@@ -71,10 +71,10 @@ export function Component({
   };
 
   return (
-    <Card className="bg-[#18181a] text-white  w-full">
+    <Card className="bg-white dark:bg-[#18181a] text-gray-800 dark:text-white w-full">
       <div className="items-left space-y-2 p-3 pt-0 pr-0">
         <div className="flex items-center justify-between">
-          <h3 className="text-base text-white">{metricTitle}</h3>
+          <h3 className="text-base text-gray-800 dark:text-white">{metricTitle}</h3>
           <Image
             src={
               dataKey === "spend"
@@ -86,16 +86,20 @@ export function Component({
             height={40}
             width={40}
             alt=""
-            className=""
+            className="opacity-90 dark:opacity-100"
           />
         </div>
         <div className="flex flex-col items-baseline !my-0">
-          <span className="text-2xl font-bold text-white">{value}</span>
-          <p className="text-sm text-[#7D7D7D]">
+          <span className="text-2xl font-bold text-gray-900 dark:text-white">
+            {value}
+          </span>
+          <p className="text-sm text-gray-500 dark:text-[#7D7D7D]">
             last 7 days trends{" "}
             <span
               className={
-                changePercentage >= 0 ? "text-green-400" : "text-red-400"
+                changePercentage >= 0 
+                  ? "text-emerald-600 dark:text-green-400" 
+                  : "text-red-600 dark:text-red-400"
               }
             >
               {changePercentage >= 0 ? "+" : ""}
@@ -118,10 +122,10 @@ export function Component({
             height={200}
           >
             <CartesianGrid 
-  horizontal={false} 
-  vertical={false} 
-  strokeDasharray="3 3" 
-/>
+              horizontal={false} 
+              vertical={false} 
+              strokeDasharray="3 3" 
+            />
             <XAxis
               dataKey="day"
               tickLine={false}
@@ -129,6 +133,7 @@ export function Component({
               axisLine={false}
               fontSize={12}
               interval={1}
+              tick={{ fill: theme === 'dark' ? '#fff' : '#374151' }}
             />
             <ChartTooltip
               cursor={false}

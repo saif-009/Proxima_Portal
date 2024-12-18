@@ -74,14 +74,16 @@ export default function Sidebar({ className = '' }) {
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const [expandedItems, setExpandedItems] = useState<string[]>([])
-  const { theme, systemTheme } = useTheme()
+  const { theme, systemTheme ,setTheme} = useTheme()
   const [mounted, setMounted] = useState(false)
   const router = useRouter()
   const pathName = usePathname()
 
   useEffect(() => {
     setMounted(true)
-    
+    if (theme === 'system') {
+    setTheme('dark')
+  }
     // Close mobile menu on route change
     const handleRouteChange = () => {
       setIsMobileOpen(false)
@@ -124,7 +126,7 @@ export default function Sidebar({ className = '' }) {
     )
   }
 
-  const currentTheme = theme === 'system' ? systemTheme : theme
+  const currentTheme = theme === 'system' ? 'dark' : theme
 
   if (!mounted) {
     return <NavbarSkeleton />
@@ -252,7 +254,7 @@ export default function Sidebar({ className = '' }) {
                 unoptimized
               />
             </div>
-            <Button
+            {/* <Button
               onClick={toggleSidebar}
               variant="ghost"
               className="p-0 px-1.5 h-6 justify-center absolute -right-8 z-[1000] dark:bg-[#171717] bg-[#F0F3F6] border border-1 transition-transform duration-300 ease-in-out hover:scale-105 hidden md:flex"
@@ -262,7 +264,7 @@ export default function Sidebar({ className = '' }) {
               ) : (
                 <ChevronLeft className="h-4 w-4 z-10" />
               )}
-            </Button>
+            </Button> */}
           </div>
 
           <nav className="space-y-1 mt-4">

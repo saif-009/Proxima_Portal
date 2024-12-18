@@ -1,5 +1,4 @@
 // @ts-nocheck
-
 'use client'
 
 import { useState, useMemo } from 'react'
@@ -67,9 +66,9 @@ export default function WorkspaceHub() {
   }, [currentPage, totalPages])
 
   return (
-    <div className="container mx-auto p-4 bg-black text-gray-100 min-h-screen">
+    <div className="container mx-auto p-4 bg-gray-50 dark:bg-black text-gray-900 dark:text-gray-100 min-h-screen">
       <div className="flex justify-between items-center my-4">
-        <h1 className="text-2xl font-bold text-white">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
           Netsurf Workspace Hub
         </h1>
         <FilterBar
@@ -82,7 +81,10 @@ export default function WorkspaceHub() {
 
       {/* Search Section */}
       <div className="flex justify-between items-center mb-6">
-        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <SearchBar 
+          searchTerm={searchTerm} 
+          setSearchTerm={setSearchTerm} 
+        />
       </div>
 
       {/* Table */}
@@ -90,6 +92,7 @@ export default function WorkspaceHub() {
         currentItems={currentItems}
         indexOfFirstItem={indexOfFirstItem}
         requestSort={requestSort}
+        sortConfig={sortConfig}
       />
 
       {/* Pagination */}

@@ -40,7 +40,7 @@ export const Pagination = ({
   }
 
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center mt-6 text-gray-300 gap-4">
+    <div className="flex flex-col md:flex-row justify-between items-center mt-6 dark:text-gray-300 text-gray-700 gap-4">
       <div className="flex items-center space-x-4">
         <div className="text-lg font-bold">
           {totalSellers - filteredItems.length} of {totalSellers} Sellers remaining
@@ -54,7 +54,11 @@ export const Pagination = ({
           onClick={handlePrevPage}
           disabled={currentPage === 1}
           variant="outline"
-          className="text-gray-100 border-gray-600 hover:bg-gray-700 hover:text-white transition-colors bg-gray-800"
+          className="dark:text-gray-100 text-gray-700 dark:border-gray-600 border-gray-300 
+                   dark:hover:bg-gray-700 hover:bg-gray-100 dark:hover:text-white hover:text-gray-900 
+                   transition-colors dark:bg-gray-800 bg-white
+                   disabled:dark:bg-gray-800 disabled:bg-gray-100
+                   disabled:dark:text-gray-600 disabled:text-gray-400"
         >
           <ChevronLeft className="h-4 w-4 mr-2" /> Previous
         </Button>
@@ -65,13 +69,16 @@ export const Pagination = ({
             max={totalPages}
             value={inputPage}
             onChange={(e) => setInputPage(e.target.value)}
-            className="w-16 mr-2 bg-gray-800 border-gray-700 text-gray-100"
+            className="w-16 mr-2 dark:bg-gray-800 bg-white dark:border-gray-700 border-gray-300 
+                     dark:text-gray-100 text-gray-900 dark:placeholder-gray-400 placeholder-gray-500"
             placeholder={currentPage.toString()}
           />
           <Button
             type="submit"
             variant="outline"
-            className="text-gray-100 border-gray-600 hover:bg-gray-700 hover:text-white transition-colors bg-gray-800"
+            className="dark:text-gray-100 text-gray-700 dark:border-gray-600 border-gray-300 
+                     dark:hover:bg-gray-700 hover:bg-gray-100 dark:hover:text-white hover:text-gray-900 
+                     transition-colors dark:bg-gray-800 bg-white"
           >
             Go
           </Button>
@@ -80,7 +87,11 @@ export const Pagination = ({
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
           variant="outline"
-          className="text-gray-100 border-gray-600 hover:bg-gray-700 hover:text-white transition-colors bg-gray-800"
+          className="dark:text-gray-100 text-gray-700 dark:border-gray-600 border-gray-300 
+                   dark:hover:bg-gray-700 hover:bg-gray-100 dark:hover:text-white hover:text-gray-900 
+                   transition-colors dark:bg-gray-800 bg-white
+                   disabled:dark:bg-gray-800 disabled:bg-gray-100
+                   disabled:dark:text-gray-600 disabled:text-gray-400"
         >
           Next <ChevronRight className="h-4 w-4 ml-2" />
         </Button>

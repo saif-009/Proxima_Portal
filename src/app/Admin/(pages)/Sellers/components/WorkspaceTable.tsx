@@ -31,10 +31,10 @@ const TableHeaderSortable = ({
   requestSort: (key: string) => void
   className?: string
 }) => (
-  <TableHead className={`text-gray-300 text-left  ${className}`}>
+  <TableHead className={`dark:text-gray-300 text-gray-700 text-left ${className}`}>
     <Button
       variant="ghost"
-      className="text-gray-300 hover:text-white hover:bg-gray-700"
+      className="dark:text-gray-300 text-gray-700 dark:hover:text-white hover:text-gray-900 dark:hover:bg-gray-700 hover:bg-gray-100"
       onClick={() => requestSort(sortKey)}
     >
       {label} <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -48,21 +48,21 @@ export const WorkspaceTable = ({
   requestSort,
 }: WorkspaceTableProps) => {
   return (
-    <div className="bg-[#38383866] rounded-lg overflow-hidden shadow-xl border border-gray-700">
+    <div className="dark:bg-[#38383866] bg-white rounded-lg overflow-hidden shadow-xl dark:border-gray-700 border-gray-200 border">
       <Table>
         <TableHeader>
-          <TableRow className="border-b border-gray-700">
-            <TableHead className="w-32  text-gray-300 text-center">S. No</TableHead>
+          <TableRow className="dark:border-gray-700 border-gray-200 border-b">
+            <TableHead className="w-32 dark:text-gray-300 text-gray-700 text-center">S. No</TableHead>
             <TableHeaderSortable label="Seller Name" sortKey="sellerName" requestSort={requestSort} className="w-48" />
-            <TableHead className="w-32 text-gray-300 text-left">Seller Ref No</TableHead>
-            <TableHead className="w-64 text-gray-300 text-left">Contact Info</TableHead>
-            <TableHead className="w-32 text-gray-300 text-left">State</TableHead>
-            <TableHead className="w-48 text-gray-300 text-left">Ad A/c Name & ID</TableHead>
-            <TableHead className="w-32 text-gray-300 text-left">Workspace ID</TableHead>
+            <TableHead className="w-32 dark:text-gray-300 text-gray-700 text-left">Seller Ref No</TableHead>
+            <TableHead className="w-64 dark:text-gray-300 text-gray-700 text-left">Contact Info</TableHead>
+            <TableHead className="w-32 dark:text-gray-300 text-gray-700 text-left">State</TableHead>
+            <TableHead className="w-48 dark:text-gray-300 text-gray-700 text-left">Ad A/c Name & ID</TableHead>
+            <TableHead className="w-32 dark:text-gray-300 text-gray-700 text-left">Workspace ID</TableHead>
             <TableHeaderSortable label="Integrations" sortKey="integrations" requestSort={requestSort} className="w-32" />
             <TableHeaderSortable label="Spends" sortKey="spendsTillDate" requestSort={requestSort} className="w-32" />
-            <TableHead className="w-24 text-gray-300 text-center">Status</TableHead>
-            <TableHeaderSortable label="Wallet Balance" sortKey="walletBalance" requestSort={requestSort} className="w-32 " />
+            <TableHead className="w-24 dark:text-gray-300 text-gray-700 text-center">Status</TableHead>
+            <TableHeaderSortable label="Wallet Balance" sortKey="walletBalance" requestSort={requestSort} className="w-32" />
             <TableHeaderSortable label="Joined on" sortKey="joinedOn" requestSort={requestSort} className="w-32" />
           </TableRow>
         </TableHeader>
@@ -70,45 +70,45 @@ export const WorkspaceTable = ({
           {currentItems.map((workspace, index) => (
             <TableRow
               key={workspace.id}
-              className="border-b border-gray-700 hover:bg-gray-750 transition-colors "
+              className="dark:border-gray-700 border-gray-200 border-b dark:hover:bg-black/50 hover:bg-gray-50 transition-colors"
             >
-              <TableCell className="font-medium text-gray-300 text-center ">
+              <TableCell className="font-medium dark:text-gray-300 text-gray-700 text-center">
                 {indexOfFirstItem + index + 1}
               </TableCell>
               <TableCell className="text-left">
-                <div className="font-medium text-gray-100">{workspace.sellerName}</div>
+                <div className="font-medium dark:text-gray-100 text-gray-900">{workspace.sellerName}</div>
               </TableCell>
-              <TableCell className="text-gray-300 text-left">{workspace.sellerRefNo}</TableCell>
-              <TableCell className="text-gray-300 text-left">
+              <TableCell className="dark:text-gray-300 text-gray-700 text-left">{workspace.sellerRefNo}</TableCell>
+              <TableCell className="dark:text-gray-300 text-gray-700 text-left">
                 <div className="flex items-center mb-1">
-                  <Mail className="h-4 w-4 mr-2 text-gray-400" />
+                  <Mail className="h-4 w-4 mr-2 dark:text-gray-400 text-gray-500" />
                   {workspace.email}
                 </div>
                 <div className="flex items-center">
-                  <Phone className="h-4 w-4 mr-2 text-gray-400" />
+                  <Phone className="h-4 w-4 mr-2 dark:text-gray-400 text-gray-500" />
                   {workspace.phone}
                 </div>
               </TableCell>
-              <TableCell className="text-gray-300 text-left">{workspace.state}</TableCell>
-              <TableCell className="text-gray-300 text-left">
+              <TableCell className="dark:text-gray-300 text-gray-700 text-left">{workspace.state}</TableCell>
+              <TableCell className="dark:text-gray-300 text-gray-700 text-left">
                 <div>{workspace.adAccountName}</div>
-                <div className="text-sm text-gray-400">{workspace.adAccountId}</div>
+                <div className="text-sm dark:text-gray-400 text-gray-500">{workspace.adAccountId}</div>
               </TableCell>
-              <TableCell className="text-gray-300 text-left">{workspace.workspaceId}</TableCell>
+              <TableCell className="dark:text-gray-300 text-gray-700 text-left">{workspace.workspaceId}</TableCell>
               <TableCell className="text-left">
                 <div className="flex gap-1 flex-wrap">
                   {workspace.integrations.map((integration) => (
                     <Badge
                       key={integration}
                       variant="outline"
-                      className="bg-gray-700 text-gray-300 border-gray-600"
+                      className="dark:bg-gray-700 bg-gray-100 dark:text-gray-300 text-gray-700 dark:border-gray-600 border-gray-300"
                     >
                       {integration}
                     </Badge>
                   ))}
                 </div>
               </TableCell>
-              <TableCell className="text-gray-300 text-center">
+              <TableCell className="dark:text-gray-300 text-gray-700 text-center">
                 ₹{workspace.spendsTillDate.toLocaleString()}
               </TableCell>
               <TableCell className="text-center">
@@ -125,10 +125,10 @@ export const WorkspaceTable = ({
                   {workspace.status}
                 </Badge>
               </TableCell>
-              <TableCell className="text-gray-300 text-center">
+              <TableCell className="dark:text-gray-300 text-gray-700 text-center">
                 ₹{workspace.walletBalance.toLocaleString()}
               </TableCell>
-              <TableCell className="text-gray-300 text-center ">
+              <TableCell className="dark:text-gray-300 text-gray-700 text-center">
                 {workspace.joinedOn}
               </TableCell>
             </TableRow>

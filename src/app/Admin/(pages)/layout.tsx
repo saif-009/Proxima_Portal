@@ -10,17 +10,22 @@ export default function PagesLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ThemeProvider>
-      <div className="flex h-screen">
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <div className="flex h-screen bg-gray-50 dark:bg-black">
         <Navbar />
 
-        <main className="flex-1 w-full overflow-hidden flex flex-col ">
+        <main className="flex-1 w-full overflow-hidden flex flex-col">
           <Header />
-          <div className="w-full overflow-x-hidden bg-black -mt-4">
+          <div className="w-full overflow-x-hidden bg-gray-50 dark:bg-black -mt-4">
             <Providers>{children}</Providers>
           </div>
         </main>
       </div>
-      </ThemeProvider>
+    </ThemeProvider>
   )
 }

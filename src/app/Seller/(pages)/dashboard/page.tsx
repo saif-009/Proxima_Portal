@@ -97,11 +97,11 @@ const MetricCard = ({
 }) => {
   return (
     <Card
-      className={`relative cursor-pointer transition-all p-1 h-full   ${
+      className={`relative cursor-pointer transition-all  h-full   ${
         isSelected && isInSheet ? 'ring-2 ring-primary' : ''
       }`}
     >
-      <CardHeader className="flex flex-row items-center justify-between  pb-2 !pt-2">
+      <CardHeader className="flex flex-row items-center justify-between gap-2   ">
         <CardTitle className="md:text-lg flex text-md font-medium capitalize">
           {metric.id.replace(/_/g, ' ')}
         </CardTitle>
@@ -111,11 +111,11 @@ const MetricCard = ({
             height={48}
             width={48}
             alt=""
-            className="-mr-2 "
+            className=" "
           />
         )}
       </CardHeader>
-      <CardContent className="!pb-4">
+      <CardContent className="">
         <div className="md:text-xl  text-lg font-bold">
           {metric.id === 'total_spend' || metric.id === 'cost_per_lead'
             ? '₹'
@@ -264,22 +264,14 @@ export default function Dashboard({ className }: any) {
  
     return (
       <div className="relative   w-full  overflow-hidden">
-        <Carousel
-          className="w-full h-full   "
-          opts={{
-            align: 'start',
-            loop: true,
-            skipSnaps: false,
-            slidesToScroll: 1,
-          }}
-        >
-          <CarouselContent className="-ml-4 grid grid-cols-2  gap-y-4 xl:gap-y-0    xl:grid-cols-4">
+       
+          <div className="w-full  grid grid-cols-4 gap-2">
             {sortedMetrics.map((metric, index) => (
-              <CarouselItem
+              <div
                 key={metric.id}
-                className="pl-4  md:basis-1/2 lg:basis-1/4"
+                className=""
               >
-                <div className="h-full">
+            
                   <MetricCard
                     metric={metric}
                     index={index}
@@ -287,13 +279,13 @@ export default function Dashboard({ className }: any) {
                     isInSheet={false}
                     onToggle={handleMetricToggle}
                   />
-                </div>
-              </CarouselItem>
+                
+              </div>
             ))}
-          </CarouselContent>
+          </div>
           {/* <CarouselPrevious className="absolute md:flex hidden left-[-11px] top-1/2 -translate-y-1/2" />
           <CarouselNext className="absolute md:flex hidden -right-1 top-1/2 -translate-y-1/2" /> */}
-        </Carousel>
+        
       </div>
     )
   }
@@ -361,7 +353,7 @@ export default function Dashboard({ className }: any) {
  
               {/* )} */}
             </div>
-            <div className="">
+            <div className="w-1/2">
               <WalletDashboard />
             </div>
  
@@ -418,8 +410,8 @@ export default function Dashboard({ className }: any) {
                     <TableRow className="">
                       <TableHead>Campaign</TableHead>
                       <TableHead>Spends</TableHead>
-                      <TableHead>Purchase</TableHead>
-                      <TableHead>Cost per Purchase</TableHead>
+                      <TableHead>Leads</TableHead>
+                      <TableHead>Cost per Leads</TableHead>
                       <TableHead>Start Date</TableHead>
                       <TableHead>End Date</TableHead>
                       <TableHead>Status</TableHead>
@@ -431,13 +423,13 @@ export default function Dashboard({ className }: any) {
                     <>
                       <TableRow className=" cursor-pointer">
                         <TableCell>Refreshing Cola Blast</TableCell>
-                        <TableCell>$5000</TableCell>
+                        <TableCell>₹5000</TableCell>
                         <TableCell>120</TableCell>
-                        <TableCell>$41.67</TableCell>
+                        <TableCell>₹41.67</TableCell>
                         <TableCell>2024-12-04</TableCell>
                         <TableCell>2024-12-05</TableCell>
                         <TableCell>
-                          <Badge className="bg-none gap-2">
+                          <Badge className="bg-gray-400/30 font-normal text-black gap-2">
                             <div className="w-2 h-2  rounded-full  bg-green-500" />
                             Active
                           </Badge>

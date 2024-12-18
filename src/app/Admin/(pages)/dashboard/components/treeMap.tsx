@@ -8,20 +8,20 @@ import { Card, CardHeader, CardTitle } from '../../../../../../components/ui/car
 import { AlertCircle } from 'lucide-react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../../../../../components/ui/select'
 
-// Enhanced color palette with lighter, more distinct colors
+// Enhanced color palette with opacity variations for light/dark modes
 const colorPalette = [
-  'bg-blue-400',    // Light Blue
-  'bg-emerald-400', // Light Emerald
-  'bg-violet-400',  // Light Violet
-  'bg-rose-400',    // Light Rose
-  'bg-amber-400',   // Light Amber
-  'bg-cyan-400',    // Light Cyan
-  'bg-indigo-400',  // Light Indigo
-  'bg-orange-400',  // Light Orange
-  'bg-teal-400',    // Light Teal
-  'bg-pink-400',    // Light Pink
-  'bg-lime-400',    // Light Lime
-  'bg-purple-400'   // Light Purple
+  'bg-blue-400/90 dark:bg-blue-400',    
+  'bg-emerald-400/90 dark:bg-emerald-400', 
+  'bg-violet-400/90 dark:bg-violet-400',  
+  'bg-rose-400/90 dark:bg-rose-400',    
+  'bg-amber-400/90 dark:bg-amber-400',   
+  'bg-cyan-400/90 dark:bg-cyan-400',    
+  'bg-indigo-400/90 dark:bg-indigo-400',  
+  'bg-orange-400/90 dark:bg-orange-400',  
+  'bg-teal-400/90 dark:bg-teal-400',    
+  'bg-pink-400/90 dark:bg-pink-400',    
+  'bg-lime-400/90 dark:bg-lime-400',    
+  'bg-purple-400/90 dark:bg-purple-400'   
 ]
 
 // Enhanced hierarchical data with more categories and products
@@ -171,32 +171,31 @@ const ModelPanel = ({ model, size, selectedView }) => (
       className={`h-full w-full ${model.color} group relative transition-all duration-200 hover:brightness-110`}
     >
       <div className="fixed z-[9999] opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-        <div className="bg-white px-4 py-3 rounded-lg shadow-xl translate-x-2 translate-y-2 relative z-[9999]">
+        <div className="bg-white dark:bg-zinc-800 px-4 py-3 rounded-lg shadow-xl translate-x-2 translate-y-2 relative z-[9999]">
           {selectedView === 'brands' ? (
             <>
-              <p className="text-black text-sm font-medium whitespace-normal">
+              <p className="text-gray-900 dark:text-white text-sm font-medium whitespace-normal">
                 {model.path}
               </p>
-              <p className="text-black text-sm font-semibold mt-2 border-t border-gray-200 pt-2">
+              <p className="text-gray-900 dark:text-white text-sm font-semibold mt-2 border-t border-gray-200 dark:border-gray-700 pt-2">
                 Leads: {model.leads.toLocaleString()}
               </p>
             </>
           ) : (
-            <p className="text-black text-sm font-semibold">
+            <p className="text-gray-900 dark:text-white text-sm font-semibold">
               Leads: {model.leads.toLocaleString()}
             </p>
           )}
         </div>
       </div>
       <div className="absolute top-4 left-4 right-4">
-        <p className="text-white font-medium text-sm truncate">
+        <p className="text-gray-900 dark:text-white font-medium text-sm truncate">
           {model.name}
         </p>
       </div>
     </div>
   </ResizablePanel>
 )
-
 const calculateColumnSizes = (data) => {
   const totalLeads = data.reduce((sum, item) => sum + item.leads, 0)
   const columns = []
@@ -231,7 +230,6 @@ const calculateColumnSizes = (data) => {
 
   return { columns, columnSizes, itemSizes }
 }
-
 export default function NetsurfTreemap() {
   const [selectedView, setSelectedView] = useState('brands')
 
@@ -249,9 +247,9 @@ export default function NetsurfTreemap() {
   )
 
   return (
-    <Card className="bg-zinc-900 border-zinc-800">
+    <Card className="bg-white dark:bg-zinc-900 border-gray-200 dark:border-zinc-800">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-7">
-        <CardTitle className="text-2xl font-bold text-white">
+        <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">
           Netsurf Leads Volume
         </CardTitle>
         <Select value={selectedView} onValueChange={setSelectedView}>
@@ -267,7 +265,7 @@ export default function NetsurfTreemap() {
       </CardHeader>
 
       <div className="md:hidden px-6 mb-4">
-        <div className="flex items-center gap-2 bg-red-950/50 text-red-400 p-3 rounded-lg border border-red-900">
+        <div className="flex items-center gap-2 bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 p-3 rounded-lg border border-red-100 dark:border-red-900">
           <AlertCircle className="h-5 w-5" />
           <p className="text-sm font-medium">
             Please open in desktop for better visualization experience
@@ -278,7 +276,7 @@ export default function NetsurfTreemap() {
       <div className="p-6">
         <ResizablePanelGroup
           direction="horizontal"
-          className="min-h-[400px] rounded-lg border border-zinc-800"
+          className="min-h-[400px] rounded-lg border border-gray-200 dark:border-zinc-800"
         >
           {columns.map((column, columnIndex) => (
             <React.Fragment key={columnIndex}>

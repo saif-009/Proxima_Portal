@@ -8,7 +8,7 @@ import StatCards from './statsCard'
 import HorizontalCards from './horizontalCards'
 export default function AnalyticsDashboard() {
   return (
-    <div className="pr-3 pt-0 pb-4 space-y-6 bg-black min-h-screen">
+    <div className="pr-3 pt-0 pb-4 space-y-6 bg-gray-50 dark:bg-black min-h-screen">
       <StatCards />
       <HorizontalCards />
 

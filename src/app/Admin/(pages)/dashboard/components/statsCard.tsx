@@ -34,7 +34,7 @@ const StatCard = ({
   }))
 
   return (
-    <Card className="p-4 bg-zinc-900 border-zinc-800 justify-between flex flex-col">
+    <Card className="p-4 bg-gray-50 dark:bg-zinc-900 border-zinc-800 justify-between flex flex-col">
       <div className="space-y-1">
         <div className="flex items-center justify-between">
           <h3 className="text-sm text-white">{title}</h3>

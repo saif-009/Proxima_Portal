@@ -38,11 +38,11 @@ const ContributionAnalysis = () => {
     };
 
     return (
-      <Card className="bg-zinc-950 border-zinc-800">
+      <Card className="bg-white dark:bg-zinc-950 border-gray-200 dark:border-zinc-800">
         <CardHeader className="pb-2">
-          <CardTitle className="text-white text-lg font-bold">{title}</CardTitle>
+          <CardTitle className="text-gray-900 dark:text-white text-lg font-bold">{title}</CardTitle>
         </CardHeader>
-        <CardContent className="flex justify-between p-4">
+        <CardContent className="flex flex-col justify-center items-center sm:flex-row sm:justify-between p-4">
           <div className="flex flex-col justify-center gap-2">
             {data.map((item, index) => (
               <div key={index} className="flex items-center gap-2">
@@ -50,13 +50,13 @@ const ContributionAnalysis = () => {
                   className="w-2 h-2 rounded-full" 
                   style={{ backgroundColor: item.fill }} 
                 />
-                <span className="text-base text-white font-medium">
+                <span className="text-base text-gray-900 dark:text-white font-medium">
                   {item.name}: {item.value}%
                 </span>
               </div>
             ))}
           </div>
-          <div className="relative w-48 h-48">
+          <div className="relative w-48 h-48 ">
             <ChartContainer config={chartConfig} className="w-full h-full">
               <PieChart width={200} height={200}>
                 <ChartTooltip
@@ -86,14 +86,14 @@ const ContributionAnalysis = () => {
                             <tspan
                               x={viewBox.cx}
                               y={viewBox.cy}
-                              className="fill-white text-2xl font-bold"
+                              className="fill-gray-900 dark:fill-white text-2xl font-bold"
                             >
                               {centerText}
                             </tspan>
                             <tspan
                               x={viewBox.cx}
                               y={(viewBox.cy || 0) + 20}
-                              className="fill-zinc-400 text-xs"
+                              className="fill-gray-500 dark:fill-zinc-400 text-xs"
                             >
                               {centerSubtext}
                             </tspan>
@@ -112,10 +112,12 @@ const ContributionAnalysis = () => {
   };
 
   return (
-    <div className="w-full bg-black">
-      <h2 className="text-white text-lg font-semibold mb-4 ml-6">Contribution Analysis</h2>
+    <div className="w-full bg-gray-50 dark:bg-black">
+      <h2 className="text-gray-900 dark:text-white text-lg font-semibold mb-4 ml-6">
+        Contribution Analysis
+      </h2>
       <div className="lg:hidden px-6 mb-4">
-        <div className="flex items-center gap-2 bg-red-950/50 text-red-400 p-3 rounded-lg border border-red-900">
+        <div className="flex items-center gap-2 bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 p-3 rounded-lg border border-red-100 dark:border-red-900">
           <AlertCircle className="h-5 w-5" />
           <p className="text-sm font-medium">
             Please open in desktop for better visualization experience
