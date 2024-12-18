@@ -44,22 +44,9 @@ export default function CampaignCreation() {
  
   return (
     <div className="max-w-4xl mx-auto p-4 sm:p-6">
-      <h1 className="md:text-3xl text-xl font-bold mb-6">Launch Ad</h1>
-      <div className="mb-6 flex  flex-row-reverse justify-start gap-5 items-center">
-        <div className="flex space-x-2">
-          {[1, 2, 3, 4].map((i) => (
-            <div
-              key={i}
-              className={`w-3 h-3 rounded-full ${
-                step >= i ? 'bg-[rgb(123,87,224)]' : 'bg-gray-300'
-              }`}
-            />
-          ))}
-        </div>
-        <span className="text-sm text-muted-foreground">Step {step} of 4</span>
-      </div>
-      {step === 1 && <PlanSelection selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan} />}
-      {step === 2 && <BrandSelection selectedBrand={selectedBrand} setSelectedBrand={setSelectedBrand} />}
+      
+      {step === 1 && <PlanSelection selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan} step={step} />}
+      {step === 2 && <BrandSelection selectedBrand={selectedBrand} setSelectedBrand={setSelectedBrand} step={step} />}
       {step === 3 && (
         <ProductSelection
           selectedBrand={selectedBrand}
@@ -67,9 +54,10 @@ export default function CampaignCreation() {
           setSelectedProducts={setSelectedProducts}
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
+          step={step} 
         />
       )}
-      {step === 4 && <LocationSelection setReferenceNumber={setReferenceNumber} selectedLocation={selectedLocation} referenceNumber={referenceNumber} setSelectedLocation={setSelectedLocation} />}
+      {step === 4 && <LocationSelection setReferenceNumber={setReferenceNumber} selectedLocation={selectedLocation} referenceNumber={referenceNumber} setSelectedLocation={setSelectedLocation} step={step}  />}
       <div className="mt-6 flex flex-col sm:flex-row justify-between space-y-4 sm:space-y-0">
         <Button onClick={handleBack} disabled={step === 1}>Back</Button>
         {step < 4 ? (

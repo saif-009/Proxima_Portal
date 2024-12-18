@@ -2,9 +2,11 @@ import Image from "next/image"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
+import Steps from "./steps"
  
 interface BrandSelectionProps {
   selectedBrand: string
+  step: number
   setSelectedBrand: (brand: string) => void
 }
  
@@ -14,28 +16,33 @@ interface Brand {
   image: string
 }
  
-export default function BrandSelection({ selectedBrand, setSelectedBrand }: BrandSelectionProps) {
+export default function BrandSelection({ selectedBrand, setSelectedBrand,  step }: BrandSelectionProps) {
   const brands: Brand[] = [
     {
       name: 'Naturamore',
       description: 'Organic and natural products for a healthier lifestyle',
-      image: '/images/Placeholder.svg'
+      image: '/images/naturamore.png'
     },
     {
       name: 'Clean & More',
       description: 'Eco-friendly cleaning solutions for your home',
-      image: '/images/Placeholder.svg'
+      image: '/images/cleanmore.png'
     },
     {
       name: 'Herb & More',
       description: 'Premium herbal remedies and supplements',
-      image: '/images/Placeholder.svg'
+      image: '/images/herbsmore.png'
     }
   ]
  
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-semibold">Select a Brand</h2>
+      <div className='flex justify-between'>
+        <h2 className="md:text-2xl text-lg font-semibold mb-4">
+          Select a Brand
+        </h2>
+        <Steps step={step} />
+      </div>
       <RadioGroup value={selectedBrand} onValueChange={setSelectedBrand} className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {brands.map((brand) => (
           <Card key={brand.name} className="overflow-hidden">

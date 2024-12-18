@@ -4,9 +4,11 @@ import { useState, useEffect } from 'react'
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { motion } from "framer-motion"
+import Steps from './steps'
  
 interface ProductSelectionProps {
   selectedBrand: string
+  step:number
   selectedProducts: string[]
   setSelectedProducts: (products: string[]) => void
   selectedCategories: string[]
@@ -18,7 +20,8 @@ export default function ProductSelection({
   selectedProducts = [],
   setSelectedProducts,
   selectedCategories = [],
-  setSelectedCategories
+  setSelectedCategories,
+  step
 }: ProductSelectionProps) {
   const productCategories: Record<string, string[]> = {
     'Naturamore': ['Category A', 'Category B'],
@@ -84,10 +87,16 @@ export default function ProductSelection({
   if (!selectedBrand || !productCategories[selectedBrand]) {
     return <div className="text-center text-lg text-gray-600">Please select a brand first.</div>
   }
+  console.log('partially selected', partiallySelectedCategories)
  
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-semibold mb-4">Select Products</h2>
+      <div className='flex justify-between'>
+        <h2 className="md:text-2xl text-lg font-semibold mb-4">
+          Select Products
+        </h2>
+        <Steps step={step} />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {productCategories[selectedBrand].map((category) => (
           <motion.div

@@ -1,36 +1,20 @@
 'use client'
 
-import { Card } from "../../../../../../components/ui/card"
+import { Card } from '../../../../../../components/ui/card'
 import { Info } from 'lucide-react'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "../../../../../../components/ui/tooltip"
-import Image from "next/image"
+} from '../../../../../../components/ui/tooltip'
+import Image from 'next/image'
 const Tags = () => {
   return (
     <div className="flex gap-2 flex-wrap">
       <Card className="p-2 md:w-64 w-full space-y-1">
-        <div className="flex items-center justify-between gap-1">
-	<div className="flex gap-2 items-center">
-	<div className="relative w-6 h-6">
-            <Image
-              src="/images/google-icon.svg" // Placeholder for the actual Meta logo path
-              alt="Meta Logo"
-              layout="fill"
-              objectFit="contain"
-            />
-	    </div>
-	     <span className="font-medium text-xs">Cost Per Lead</span>
-          </div>
-	 
-          <span className="text-sm">₹122</span>
-          
-        </div>
         <div className="flex items-center justify-end">
-	<TooltipProvider>
+          <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
                 <Info className="h-3 w-3 text-muted-foreground" />
@@ -47,28 +31,28 @@ const Tags = () => {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-          
         </div>
+        <div className="flex items-center justify-between gap-1">
+          <div className="flex gap-2 items-center">
+            <div className="relative w-6 h-6">
+              <Image
+                src="/images/google-icon.svg" // Placeholder for the actual Meta logo path
+                alt="Meta Logo"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <span className="font-medium text-xs">Cost Per Lead</span>
+          </div>
+
+          <span className="text-sm">₹122</span>
+        </div>
+        
       </Card>
 
       <Card className="p-2 md:w-64 w-full space-y-1">
-        <div className="flex items-center justify-between gap-1">
-	<div className="flex gap-2 items-center">
-	<div className="relative w-6 h-6">
-            <Image
-              src="/images/meta-icon.svg" // Placeholder for the actual Meta logo path
-              alt="Meta Logo"
-              layout="fill"
-              objectFit="contain"
-            />
-          </div>
-	  <span className="font-medium text-xs">Cost Per Lead</span>
-	  </div>
-          <span className="text-sm">₹256</span>
-         
-        </div>
         <div className="flex items-center justify-end">
-	<TooltipProvider>
+          <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
                 <Info className="h-3 w-3 text-muted-foreground" />
@@ -85,8 +69,22 @@ const Tags = () => {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-         
         </div>
+        <div className="flex items-center justify-between gap-1">
+          <div className="flex gap-2 items-center">
+            <div className="relative w-6 h-6">
+              <Image
+                src="/images/meta-icon.svg" // Placeholder for the actual Meta logo path
+                alt="Meta Logo"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <span className="font-medium text-xs">Cost Per Lead</span>
+          </div>
+          <span className="text-sm">₹256</span>
+        </div>
+        
       </Card>
     </div>
   )

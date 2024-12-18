@@ -6,9 +6,11 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { MapPin, Hash } from 'lucide-react'
 import { motion } from "framer-motion"
+import Steps from "./steps"
  
 interface LocationAndReferenceInputProps {
   selectedLocation: string
+  step:number
   setSelectedLocation: (location: string) => void
   referenceNumber: string
   setReferenceNumber: (referenceNumber: string) => void
@@ -16,6 +18,7 @@ interface LocationAndReferenceInputProps {
  
 export default function LocationAndReferenceInput({
   selectedLocation,
+  step,
   setSelectedLocation,
   referenceNumber,
   setReferenceNumber
@@ -32,7 +35,13 @@ export default function LocationAndReferenceInput({
   }
  
   return (
-    <Card className="w-full max-w-4xl mx-auto bg-background/50 backdrop-blur-sm">
+    <Card className="w-full max-w-4xl mx-auto bg-background/50 backdrop-blur-sm !border-none">
+      <div className='flex justify-between'>
+        <h2 className="md:text-2xl text-lg font-semibold mb-4">
+          Fill Details
+        </h2>
+        <Steps step={step} />
+      </div>
       <CardContent className="p-6">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
