@@ -35,7 +35,7 @@ import {
   Search,
   X,
 } from 'lucide-react'
- 
+
 export default function BillingAndSubscription() {
   const [isEditing, setIsEditing] = useState(false)
   const [businessDetails, setBusinessDetails] = useState({
@@ -46,33 +46,33 @@ export default function BillingAndSubscription() {
   const [tempBusinessDetails, setTempBusinessDetails] = useState({
     ...businessDetails,
   })
- 
+
   const handleEdit = () => {
     setIsEditing(true)
     setTempBusinessDetails({ ...businessDetails })
   }
- 
+
   const handleSave = () => {
     setBusinessDetails({ ...tempBusinessDetails })
     setIsEditing(false)
   }
- 
+
   const handleCancel = () => {
     setIsEditing(false)
     setTempBusinessDetails({ ...businessDetails })
   }
- 
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTempBusinessDetails({
       ...tempBusinessDetails,
       [e.target.id]: e.target.value,
     })
   }
- 
+
   interface StatusProps {
     status: 'Pending' | 'Paid' | 'Cancel'
   }
- 
+
   const StatusIndicator = ({ status }: StatusProps) => {
     const getStatusColor = () => {
       switch (status) {
@@ -86,7 +86,7 @@ export default function BillingAndSubscription() {
           return 'bg-gray-400'
       }
     }
- 
+
     return (
       <div className="flex items-center space-x-2">
         <span className={`h-2 w-2 rounded-full ${getStatusColor()}`} />
@@ -94,9 +94,9 @@ export default function BillingAndSubscription() {
       </div>
     )
   }
- 
+
   return (
-    <div className="container mx-auto p-4 space-y-8 mb-20 overflow-auto">
+    <div className="container mx-auto p-4 space-y-8  overflow-auto">
       {/* Header Section */}
       <header className="text-left">
         <h1 className="text-xl font-bold mb-2">Subscription Management</h1>
@@ -104,7 +104,7 @@ export default function BillingAndSubscription() {
           Manage your subscription plans, billing details, and payment methods.
         </p>
       </header>
- 
+
       {/* Current Plan Section */}
       <Card>
         <CardHeader className="pb-2">
@@ -118,11 +118,9 @@ export default function BillingAndSubscription() {
             <p className="text-muted-foreground">
               Unlimited campaigns, Advanced analytics
             </p>
- 
-           
           </div>
           <div>
-          <p className="mt-4 font-light">Renews On: 1 Jan 2024</p>
+            <p className="mt-4 font-light">Renews On: 1 Jan 2024</p>
             <p className="font-bold bg-gradient-to-r from-[#DA5946] to-[#864D8E] inline-block text-transparent bg-clip-text">
               ₹5000/month
             </p>
@@ -132,15 +130,15 @@ export default function BillingAndSubscription() {
           </Button> */}
         </CardContent>
       </Card>
- 
+
       {/* Billing Information Section */}
       {/* <Card>
         <CardHeader>
           <CardTitle>Billing Information</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6"> */}
-          {/* Business Details */}
-          {/* <div className="space-y-4">
+      {/* Business Details */}
+      {/* <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold">Business Details</h3>
               {!isEditing && (
@@ -207,9 +205,9 @@ export default function BillingAndSubscription() {
               </div>
             )}
           </div> */}
- 
-          {/* Payment Methods */}
-          {/* <div className="space-y-4 bg-[]">
+
+      {/* Payment Methods */}
+      {/* <div className="space-y-4 bg-[]">
             <div className="flex justify-between items-center">
               <h3 className="text-lg font-semibold">Payment Methods</h3>
               <Button
@@ -253,9 +251,9 @@ export default function BillingAndSubscription() {
               </div>
             </div>
           </div> */}
- 
-          {/* Billing Address */}
-          {/* <div className="space-y-4  p-3 rounded-sm">
+
+      {/* Billing Address */}
+      {/* <div className="space-y-4  p-3 rounded-sm">
             <h3 className="text-lg font-semibold">Billing Address</h3>
             <div className="grid gap-2">
               <Label htmlFor="billingAddress">Billing Address</Label>
@@ -267,9 +265,9 @@ export default function BillingAndSubscription() {
           </div>
         </CardContent>
       </Card> */}
- 
+
       {/* Billing History Section */}
-      <Card className="mb-96">
+      <Card className="">
         <CardHeader>
           <CardTitle>Billing History</CardTitle>
         </CardHeader>
@@ -280,92 +278,66 @@ export default function BillingAndSubscription() {
               <Input placeholder="Search invoices" className="pl-8" />
             </div>
           </div>
-          <Table className="rounded-lg">
+          <Table className="rounded-lg w-full">
             <TableHeader>
-              <TableRow className="bg-[#383838]">
-                <TableHead>Month</TableHead>
-                <TableHead>Type</TableHead>
-                <TableHead>Amount (GST Incl)</TableHead>
-                {/* <TableHead>Invoice</TableHead> */}
+              <TableRow className=" dark:bg-[#383838]">
+                <TableHead className=" w-1/3">Month</TableHead>
+                <TableHead className="w-1/3">Type</TableHead>
+                <TableHead className=" w-1/3">
+                  Amount (GST Incl)
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {/* January Entries */}
               <TableRow>
-                <TableCell>January</TableCell>
-                <TableCell>Campaign <br/><span className='text-gray-400'>(intermediate)</span></TableCell>
-                <TableCell>₹8,850.00</TableCell>
-                {/* <TableCell>
-                  <Button variant="ghost" size="sm">
-                    <Download className="h-4 w-4 mr-2" />
-                    Download
-                  </Button>
-                </TableCell> */}
+                <TableCell className="w-1/3">January</TableCell>
+                <TableCell className="w-1/3">
+                  Campaign <br />
+                  <span className="text-gray-400">(intermediate)</span>
+                </TableCell>
+                <TableCell className="w-1/3">₹8,850.00</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>January</TableCell>
-                <TableCell>Subscription</TableCell>
-                <TableCell>₹2,950.00</TableCell>
-                {/* <TableCell>
-                  <Button variant="ghost" size="sm">
-                    <Download className="h-4 w-4 mr-2" />
-                    Download
-                  </Button>
-                </TableCell> */}
+                <TableCell className="w-1/3">January</TableCell>
+                <TableCell className="w-1/3">Subscription</TableCell>
+                <TableCell className="w-1/3">₹2,950.00</TableCell>
               </TableRow>
- 
+
               {/* February Entries */}
               <TableRow>
-                <TableCell>February</TableCell>
-                <TableCell>Campaign <br/><span className='text-gray-400'>(intermediate)</span></TableCell>
-                <TableCell>₹8,850.00</TableCell>
-                {/* <TableCell>
-                  <Button variant="ghost" size="sm">
-                    <Download className="h-4 w-4 mr-2" />
-                    Download
-                  </Button>
-                </TableCell> */}
+                <TableCell className="w-1/3">February</TableCell>
+                <TableCell className="w-1/3">
+                  Campaign <br />
+                  <span className="text-gray-400">(intermediate)</span>
+                </TableCell>
+                <TableCell className="w-1/3">₹8,850.00</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>February</TableCell>
-                <TableCell>Subscription</TableCell>
-                <TableCell>₹2,950.00</TableCell>
-                {/* <TableCell>
-                  <Button variant="ghost" size="sm">
-                    <Download className="h-4 w-4 mr-2" />
-                    Download
-                  </Button>
-                </TableCell> */}
+                <TableCell className="w-1/3">February</TableCell>
+                <TableCell className="w-1/3">Subscription</TableCell>
+                <TableCell className="w-1/3">₹2,950.00</TableCell>
               </TableRow>
- 
+
               {/* March Entries */}
               <TableRow>
-                <TableCell>March</TableCell>
-                <TableCell>Campaign <br/><span className='text-gray-400'>(intermediate)</span></TableCell>
-                <TableCell>₹8,850.00</TableCell>
-                {/* <TableCell>
-                  <Button variant="ghost" size="sm">
-                    <Download className="h-4 w-4 mr-2" />
-                    Download
-                  </Button>
-                </TableCell> */}
+                <TableCell className="w-1/3">March</TableCell>
+                <TableCell className="w-1/3">
+                  Campaign <br />
+                  <span className="text-gray-400">(intermediate)</span>
+                </TableCell>
+                <TableCell className="w-1/3">₹8,850.00</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>March</TableCell>
-                <TableCell>Subscription</TableCell>
-                <TableCell>₹2,950.00</TableCell>
-                {/* <TableCell>
-                  <Button variant="ghost" size="sm">
-                    <Download className="h-4 w-4 mr-2" />
-                    Download
-                  </Button>
-                </TableCell> */}
+                <TableCell className="w-1/3">March</TableCell>
+                <TableCell className="w-1/3">Subscription</TableCell>
+                <TableCell className="w-1/3">₹2,950.00</TableCell>
               </TableRow>
             </TableBody>
           </Table>
         </CardContent>
       </Card>
- 
+
       {/* Help Icon */}
       <TooltipProvider>
         <Tooltip>
@@ -386,4 +358,3 @@ export default function BillingAndSubscription() {
     </div>
   )
 }
- 

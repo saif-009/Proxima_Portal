@@ -7,11 +7,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "../../../../../compone
 import { BarChartIcon } from 'lucide-react'
 import LeadList from "./LeadList"
 import LeadDetails from "./LeadDetails"
-import { subDays, isWithinInterval, parseISO } from "date-fns"
+import { subDays, isWithinInterval, parseISO, parse } from "date-fns"
 import { useTheme } from "next-themes"
 import { useQuery } from '@tanstack/react-query'
 import { getAllCampaignData, getAllLeadsData } from './leadsApi/leadsApi'
-import Axios from "../../../../../Axios/Axios"
+import Axios from "../../../../../Axios/Axios" 
 import LeadSkeleton from "./lead-skeleton/LeadSkeleton"
 import MobileLeadDetails from "./MobileLeadDetails"
 import DateRangePicker from "../dashboard/components/daterangePicker"
@@ -39,14 +39,19 @@ export default function LeadManagementInterface() {
     staleTime: 1000 * 30,
     enabled: !!selectedCampaign,
   })
-
   const filteredLeads = useMemo(() => {
     if (!campaignLeads) return []
+    console.log('campaignLeads',campaignLeads)
     return campaignLeads.filter((lead: any) => {
-      const leadDate = parseISO(lead.createdAt)
+      const leadDate = parse(lead.createdAt, 'M/d/yyyy', new Date())
+
+      console.log('isWithinInterval', isWithinInterval(leadDate, { start: date.from, end: date.to }))
       return isWithinInterval(leadDate, { start: date.from, end: date.to })
     })
   }, [campaignLeads, date])
+
+
+  console.log('filtered leads', filteredLeads)
 
   const { leadCoverage, qualityScore } = useMemo(() => {
     const totalLeads = filteredLeads.length

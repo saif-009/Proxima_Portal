@@ -9,7 +9,7 @@ const categories = [
 
 export default function SettingsLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className="w-full mx-auto px-6 ">
+    <div className="w-full mx-auto px-6 mt-2 ">
      <SettingTab/>
       <div className="py-6">{children}</div>
     </div>
