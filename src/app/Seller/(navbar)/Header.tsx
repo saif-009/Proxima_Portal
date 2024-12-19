@@ -206,7 +206,7 @@ const router = useRouter()
               <Button variant="outline" className="bg-primary-foreground">
                 <div className="flex items-center">
                   <WalletIcon className="h-5 w-5 mr-2" />
-                  <span className="font-semibold">$7,000</span>
+                  <span className="font-semibold">₹7,000</span>
                 </div>
               </Button>
             </SheetTrigger>

@@ -1,9 +1,9 @@
 // @ts-nocheck
 // CampaignColumns.js
 import React from 'react'
-import { Button } from '../../../../../../../components/ui/button'
+import { Button } from '@/components/ui/button'
 import { ChevronDown, ChevronRight, PencilIcon } from 'lucide-react'
-import StatusSwitch from './StatusSwitch.tsx'
+import StatusSwitch from './StatusSwitch'
 import {
   getFormattedDate,
   FormatNumber,
@@ -11,11 +11,15 @@ import {
   formatCurrency,
   formatDuration,
 } from './utils'
-import metaLogo from '../../../../../../../public/images/meta-icon.svg'
-import googleLogo from '../../../../../../../public/images/google-icon.svg'
+import metaLogo from '@/../public/meta icon.svg'
+import googleLogo from '@/../public/google icon.svg'
+import TruncateText from './truncatedText'
+
+
 
 
 export default function CampaignColumns({ activePlatform }) {
+
 
   return [
     {
@@ -38,7 +42,7 @@ export default function CampaignColumns({ activePlatform }) {
                 <ChevronRight className="h-4 w-4" />
               )}
             </Button>
-            <span>{row.original.name}</span>
+            <TruncateText text={row.original.name} maxLength={ 20} />
             {row.original.platform !== 'meta' && (
               <Button
                 variant="ghost"

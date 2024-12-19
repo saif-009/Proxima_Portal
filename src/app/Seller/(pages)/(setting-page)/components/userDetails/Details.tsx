@@ -37,7 +37,7 @@ export default function Details({ userData }: any) {
     business: false,
     notifications: false,
   })
-
+ 
   const [formData, setFormData] = useState({
     personal: {
       name: '',

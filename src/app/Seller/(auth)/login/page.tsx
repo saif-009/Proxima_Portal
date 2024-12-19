@@ -62,11 +62,11 @@ export default function Login() {
       setIsOtpSend(false)
       setLoadSendOTP(true)
       const body = {
-        username: mobileNumber,
+        mobile: mobileNumber,
       }
 
       try {
-        const res = await Axios.post('/login-otp', body)
+        const res = await Axios.post('/auth', body)
         if (res.status === 200 && res.data?.valid) {
           setIsOtpSend(true)
           setTimer(60)
@@ -103,11 +103,11 @@ export default function Login() {
 
       setLoadSendOTP(true)
       const body = {
-        username: mobileNumber,
+        mobile: mobileNumber,
       }
 
       try {
-        const res = await Axios.post('/login-otp', body)
+        const res = await Axios.post('/auth', body)
         if (res.status === 200 && res?.data?.valid) {
           setIsOtpSend(true)
           setTimer(60)
@@ -146,11 +146,11 @@ export default function Login() {
   const onVerifyOtp = useCallback(
     async (otp: string) => {
       const body = {
-        username: mobileNumber,
+        mobile: mobileNumber,
         code: otp,
       }
       try {
-        const res = await Axios.post('/verify-login', body)
+        const res = await Axios.post('/auth/verify-otp', body)
         if (res.status === 200 && res?.data?.valid) {
           const token = res.data.token
           Cookies.set('seller_token', token, { expires: 7 })
@@ -159,7 +159,6 @@ export default function Login() {
             description: res?.data?.message,
           })
 
-          window.location.reload()
 
           router.push('/Seller/dashboard')
         } else {
@@ -230,7 +229,7 @@ export default function Login() {
     try {
       emailSchema.parse({ email, password })
       try {
-        const res = await Axios.post('/login-user', { email, password })
+        const res = await Axios.post('/auth', { email, password })
         console.log('email and password are valid', email, password)
         console.log('response', res)
         if (res.status === 200 && res?.data?.valid) {
@@ -241,6 +240,7 @@ export default function Login() {
             title: 'Success',
             description: res?.data?.message,
           })
+          window.location.reload()
           router.push('/Seller/dashboard')
           
         } else {
@@ -268,24 +268,24 @@ export default function Login() {
   return (
     <div className="w-full px-12 bg-white md:px-14 md:mt-10 rounded-md  ">
       <div className="space-y-1">
-        <h2 className="text-2xl font-semibold">Login</h2>
+        <h2 className="text-2xl font-semibold text-black">Login</h2>
       </div>
 
       <div className="space-y-4 bg-white mt-6">
         <Tabs defaultValue="mobile" className="">
-          <TabsList className="grid w-full grid-cols-2 bg-gray-100">
+          <TabsList className="grid w-full grid-cols-1 bg-gray-100">
             <TabsTrigger
               className=" dark:bg-gray-100 dark:text-black active:bg-white active:text-black"
               value="mobile"
             >
               Mobile
             </TabsTrigger>
-            <TabsTrigger
+            {/* <TabsTrigger
               className=" dark:bg-gray-100 dark:text-black active:bg-white active:text-black"
               value="email"
             >
               Email
-            </TabsTrigger>
+            </TabsTrigger> */}
           </TabsList>
           <TabsContent value="mobile">
             <Card
@@ -389,7 +389,7 @@ export default function Login() {
               </CardFooter>
             </Card>
           </TabsContent>
-          <TabsContent value="email">
+          {/* <TabsContent value="email">
             <Card
               className="mt-4 bg-white shadow-none border-none p-0"
               style={{ backgroundColor: 'white' }}
@@ -452,31 +452,12 @@ export default function Login() {
                 </form>
               </CardContent>
 
-              {/* <div className="flex items-center mt-3">
-                <p
-                  className="border"
-                  style={{ height: '0.7px', width: '49%', overflow: 'hidden' }}
-                ></p>
-                <p style={{ fontSize: '14px' }} className="text-black">
-                  OR
-                </p>
-                <p
-                  className="border"
-                  style={{ height: '0.7px', width: '49%', overflow: 'hidden' }}
-                ></p>
-              </div> */}
-
-              {/* <div className="mt-3">
-                <span className="submit-button-google">                   
-                  <Button className="w-full text-black  bg-white hover:bg-white"  onClick={() => googleLogin()}>
-                    <Image src={googleicon} width={20} height={20} alt="" className="mr-8"/> Sign in with Google &nbsp;
-                  </Button>
-                </span>
-              </div> */}
+             
             </Card>
-          </TabsContent>
+          </TabsContent> */}
         </Tabs>
       </div>
     </div>
+    
   )
 }

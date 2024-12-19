@@ -124,8 +124,9 @@ export default function LeadManagementInterface() {
   }
 
   useEffect(() => {
+
     if (allCampaign?.length > 0 && !selectedCampaign) {
-      setSelectedCampaign(allCampaign[0]?.campaign_id || "")
+      setSelectedCampaign(allCampaign[0]?.id || "")
     }
   }, [allCampaign, selectedCampaign])
 
@@ -141,17 +142,17 @@ export default function LeadManagementInterface() {
               </SelectTrigger>
               <SelectContent >
                 {allCampaign?.map((campaign: any, index: number) => (
-                  <SelectItem key={campaign?.campaign_id} value={campaign?.campaign_id}>
+                  <SelectItem key={campaign?.id} value={campaign?.id}>
                     {index + 1}.&nbsp;{campaign.name}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
-            <DateRangePicker
+            {/* <DateRangePicker
               date={date}
               setDate={setDate}
               className=""
-            />
+            /> */}
           </div>
         </div>
         <div className="md:w-1/2 flex justify-end space-x-4">

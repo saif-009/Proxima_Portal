@@ -1,18 +1,41 @@
 'use client'
 
-import React, {  useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from '../../../../../components/ui/button'
-import {Card,CardContent,CardFooter,CardHeader,} from '../../../../../components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from '../../../../../components/ui/card'
 import { Progress } from '../../../../../components/ui/progress'
 import { Toggle } from '../../../../../components/ui/toggle'
-import {Popover,PopoverContent,PopoverTrigger} from '../../../../../components/ui/popover'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '../../../../../components/ui/popover'
 import { Checkbox } from '../../../../../components/ui/checkbox'
-import {TrendingUp, Users, DollarSign, BarChart2,  Pencil, LayoutGrid, List as ListIcon, Image as ImageIcon, CloudFog} from 'lucide-react'
-import {   subDays,format  } from "date-fns";
+import {
+  TrendingUp,
+  Users,
+  DollarSign,
+  BarChart2,
+  Pencil,
+  LayoutGrid,
+  List as ListIcon,
+  Image as ImageIcon,
+  CloudFog,
+} from 'lucide-react'
+import { subDays, format } from 'date-fns'
 import FormatNumber from '../../../../../components/FormatNumber'
 import DateRangePicker from '../dashboard/components/daterangePicker'
-import {  useQuery } from '@tanstack/react-query'
-import { fetchCampaignsData, fetchListCampaignsData, GoogleCampaignsAdGroupData } from './campaignsApi'
+import { useQuery } from '@tanstack/react-query'
+import {
+  fetchCampaignsData,
+  fetchListCampaignsData,
+  GoogleCampaignsAdGroupData,
+} from './campaignsApi'
 import CampaignGridViewSkeleton from '../../../../../utils/CampaignsGridViewSkelton'
 import CampaignsListViewSkelton from '../../../../../utils/CampaignsListViewSkelton'
 import AddCampaignBudget from './components/AddBudget'
@@ -21,77 +44,97 @@ import EditCampaignSettings from './components/EditCampaignSettings'
 
 import dynamic from 'next/dynamic'
 import ListView2 from './components/listView/ListViewFinal'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../../../../components/ui/tooltip'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '../../../../../components/ui/tooltip'
 import { Badge } from '../../../../../components/ui/badge'
 import Metaicon from '../../../../../public/images/meta-icon.svg'
 import Image from 'next/image'
 
 // lazyload
-const AdPreview = dynamic(()=>import('./components/AdPreview'))
+const AdPreview = dynamic(() => import('./components/AdPreview'))
 
-
-function getFormattedDate(dateString:string) {
+function getFormattedDate(dateString: string) {
   // Parse the date string into a Date object
-  const date = new Date(dateString);
+  const date = new Date(dateString)
 
   // Array of month names
   const monthNames = [
-    "Jan", "Feb", "March", "Apr", "May", "Jun", 
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-  ];
+    'Jan',
+    'Feb',
+    'March',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ]
 
   // Get the day of the month
-  const day = date.getDate();
+  const day = date.getDate()
 
   // Get the month name (months are zero-indexed, so we use the month number as index)
-  const month = monthNames[date.getMonth()];
+  const month = monthNames[date.getMonth()]
 
   // Return formatted date as "Month Day"
-  return `${month} ${day}`;
+  return `${month} ${day}`
 }
 
-
-
 export default function Campaigns({ className }: any) {
-
   const [date, setDate] = React.useState({
     from: subDays(new Date(), 7), // Default to last 7 days
     to: new Date(),
-  });
-
+  })
 
   const [formatedDate, setFormatedDate] = React.useState({
     from: subDays(new Date(), 7), // Default to last 7 days
     to: new Date(),
-  });
+  })
 
-
-  const { data: allCampaignData2, error: allCampaignError, isLoading: allCampaignLoading } = useQuery({
+  const {
+    data: allCampaignData2,
+    error: allCampaignError,
+    isLoading: allCampaignLoading,
+  } = useQuery({
     queryKey: ['allCampaigns', formatedDate],
     queryFn: () => fetchCampaignsData(formatedDate),
-    staleTime:300000, // Cache data for 24 hours
-  });
+    staleTime: 300000, // Cache data for 24 hours
+  })
 
-  const { data: campaignListData2, error: campaignListError, isLoading: campaignListLoading } = useQuery({
+  const {
+    data: campaignListData2,
+    error: campaignListError,
+    isLoading: campaignListLoading,
+  } = useQuery({
     queryKey: ['campaignList', formatedDate],
     queryFn: async () => await fetchListCampaignsData(formatedDate),
-    staleTime:300000,
-  });
+    staleTime: 300000,
+  })
 
-
-  const { data: GoogleCampaignAdGroupMetrics, error: GoogleCampaignAdGroupError, isLoading: GoogleCampaignAdGroupLoading } = useQuery({
+  const {
+    data: GoogleCampaignAdGroupMetrics,
+    error: GoogleCampaignAdGroupError,
+    isLoading: GoogleCampaignAdGroupLoading,
+  } = useQuery({
     queryKey: ['gCampaign', formatedDate],
     queryFn: async () => await GoogleCampaignsAdGroupData(formatedDate),
-    staleTime:300000,
-  });
+    staleTime: 300000,
+  })
 
   //lazy loading
- 
+
   console.log('campaign data from campaigns', campaignListData2)
 
   const [viewMode, setViewMode] = useState<'card' | 'list'>('list')
 
-  const [campaignsTab, setCampaignTab] = useState("All Campaigns")
+  const [campaignsTab, setCampaignTab] = useState('All Campaigns')
   const [allCampaignsData, setAllCampaignsData] = useState<any[]>([])
   const [listCampaigns, setListCampaigns] = useState<any>([])
   const [gCampaignAdgroup, setgCampaignAdgroup] = useState<any[]>([])
@@ -102,9 +145,9 @@ export default function Campaigns({ className }: any) {
     //   to: format(date?.to, 'yyyy-MM-dd'),
     // };
     const newFormattedDate = {
-      from:date?.from?format(date?.from, 'yyyy-MM-dd'):date?.from,
-      to:date?.to?format(date?.to, 'yyyy-MM-dd'):date?.from,
-    };
+      from: date?.from ? format(date?.from, 'yyyy-MM-dd') : date?.from,
+      to: date?.to ? format(date?.to, 'yyyy-MM-dd') : date?.from,
+    }
 
     // Use prevState callback to avoid race conditions or unnecessary updates
     setFormatedDate((prevFormattedDate: any) => {
@@ -112,30 +155,26 @@ export default function Campaigns({ className }: any) {
         newFormattedDate.from !== prevFormattedDate.from ||
         newFormattedDate.to !== prevFormattedDate.to
       ) {
-        return newFormattedDate;
+        return newFormattedDate
       }
 
       // Return the previous state if no change is needed
-      return prevFormattedDate;
-    });
-  }, [date]);
+      return prevFormattedDate
+    })
+  }, [date])
 
-
-  useEffect(()=>{
-      if(allCampaignData2?.length>0){
-        setAllCampaignsData(allCampaignData2)
-
-      
-      }else{
-        setAllCampaignsData([])
-      }
-    
-  },[allCampaignData2])
+  useEffect(() => {
+    if (allCampaignData2?.length > 0) {
+      setAllCampaignsData(allCampaignData2)
+    } else {
+      setAllCampaignsData([])
+    }
+  }, [allCampaignData2])
 
   useEffect(() => {
     if (campaignListData2?.length > 0) {
       setListCampaigns(campaignListData2)
-    }else{
+    } else {
       setListCampaigns([])
     }
   }, [campaignListData2])
@@ -143,38 +182,37 @@ export default function Campaigns({ className }: any) {
   useEffect(() => {
     if (GoogleCampaignAdGroupMetrics?.length > 0) {
       setgCampaignAdgroup(GoogleCampaignAdGroupMetrics)
-    }else{
+    } else {
       setgCampaignAdgroup([])
     }
   }, [GoogleCampaignAdGroupMetrics])
-  
-  
 
   const handleCampaignsTab = (tab: string) => {
     if (tab === 'All Campaigns') {
-     
       setListCampaigns(campaignListData2)
       setCampaignTab(tab)
       // set grid view
       setAllCampaignsData(allCampaignData2)
-    }else if (tab === 'Ending Soon') {
+    } else if (tab === 'Ending Soon') {
       //  for list view
       // Get the current date
-      const currentDate = new Date();
+      const currentDate = new Date()
 
       // Define 7 days from the current date
-      const sevenDaysFromNow = new Date();
-      sevenDaysFromNow.setDate(currentDate.getDate() + 7);
+      const sevenDaysFromNow = new Date()
+      sevenDaysFromNow.setDate(currentDate.getDate() + 7)
 
       const filterListCampStatus = campaignListData2?.filter(
-        (val:any) => val?.status === 'ACTIVE' || val?.status === 'PAUSED'
-      );
+        (val: any) => val?.status === 'ACTIVE' || val?.status === 'PAUSED',
+      )
 
       // Filter campaigns where the stop_time is within the next 7 days
-      const endingSoonCampaigns = filterListCampStatus?.filter((campaign: any) => {
-        const stopTime = new Date(campaign?.dateEnd);
-        return stopTime >= currentDate && stopTime <= sevenDaysFromNow;
-      });
+      const endingSoonCampaigns = filterListCampStatus?.filter(
+        (campaign: any) => {
+          const stopTime = new Date(campaign?.dateEnd)
+          return stopTime >= currentDate && stopTime <= sevenDaysFromNow
+        },
+      )
 
       if (endingSoonCampaigns?.length > 0) {
         setListCampaigns(endingSoonCampaigns)
@@ -182,22 +220,23 @@ export default function Campaigns({ className }: any) {
         setListCampaigns([])
       }
 
-
       // for grid view
       // Get current date and date 7 days from now
-      const today = new Date();
-      const sevenDaysLater = new Date();
-      sevenDaysLater.setDate(today.getDate() + 7);
+      const today = new Date()
+      const sevenDaysLater = new Date()
+      sevenDaysLater.setDate(today.getDate() + 7)
 
       const filterGridCampStatus = allCampaignData2?.filter(
-        (val:any) => val?.status === 'ACTIVE' || val?.status === 'PAUSED'
-      );
+        (val: any) => val?.status === 'ACTIVE' || val?.status === 'PAUSED',
+      )
 
       // Filter campaigns ending in the next 7 days
-      const endingGridSoonCampaigns = filterGridCampStatus?.filter((campaign: any) => {
-        const endDate = new Date(campaign?.stop_time);
-        return endDate > today && endDate <= sevenDaysLater;
-      });
+      const endingGridSoonCampaigns = filterGridCampStatus?.filter(
+        (campaign: any) => {
+          const endDate = new Date(campaign?.stop_time)
+          return endDate > today && endDate <= sevenDaysLater
+        },
+      )
 
       if (endingGridSoonCampaigns?.length > 0) {
         setAllCampaignsData(endingGridSoonCampaigns)
@@ -206,22 +245,25 @@ export default function Campaigns({ className }: any) {
       }
 
       setCampaignTab(tab)
-    }else if (tab === 'Needs Budget') {
-      const today = new Date();
+    } else if (tab === 'Needs Budget') {
+      const today = new Date()
       // Setting time to 00:00:00 for comparison at the date level
-      today.setHours(0, 0, 0, 0);
+      today.setHours(0, 0, 0, 0)
 
       // list view campaigns
       const filteredData = campaignListData2?.filter((item: any) => {
-        const itemDate = new Date(item?.dateEnd);
-        itemDate.setHours(0, 0, 0, 0); // Normalize the item's date
-        return itemDate >= today; // Check if the date is today or in the future
-      });
+        const itemDate = new Date(item?.dateEnd)
+        itemDate.setHours(0, 0, 0, 0) // Normalize the item's date
+        return itemDate >= today // Check if the date is today or in the future
+      })
 
       const listviewcampaign = filteredData?.filter((val: any) => {
-
-        const remainiingListCmapaign = (val?.budget_remaining / val?.lifetime_budget) * 100;
-        return remainiingListCmapaign <= 10 && (val?.status === "PAUSED" || val?.status === "ACTIVE");
+        const remainiingListCmapaign =
+          (val?.budget_remaining / val?.lifetime_budget) * 100
+        return (
+          remainiingListCmapaign <= 10 &&
+          (val?.status === 'PAUSED' || val?.status === 'ACTIVE')
+        )
       })
       if (listviewcampaign?.length > 0) {
         setListCampaigns(listviewcampaign)
@@ -231,15 +273,19 @@ export default function Campaigns({ className }: any) {
 
       //  grid campaigns
       const filteredGrid = allCampaignData2?.filter((item: any) => {
-        const itemDate2 = new Date(item?.stop_time);
-        itemDate2.setHours(0, 0, 0, 0); // Normalize the item's date
-        return itemDate2 >= today; // Check if the date is today or in the future
-      });
+        const itemDate2 = new Date(item?.stop_time)
+        itemDate2.setHours(0, 0, 0, 0) // Normalize the item's date
+        return itemDate2 >= today // Check if the date is today or in the future
+      })
 
       const filteredCampaigns = filteredGrid?.filter((campaign: any) => {
-        const remainingPercentage = (campaign.budget_remaining / campaign.lifetime_budget) * 100;
-        return remainingPercentage <= 10 && (campaign.status === "PAUSED" || campaign.status === "ACTIVE");
-      });
+        const remainingPercentage =
+          (campaign.budget_remaining / campaign.lifetime_budget) * 100
+        return (
+          remainingPercentage <= 10 &&
+          (campaign.status === 'PAUSED' || campaign.status === 'ACTIVE')
+        )
+      })
 
       if (filteredCampaigns?.length > 0) {
         setAllCampaignsData(filteredCampaigns)
@@ -247,35 +293,33 @@ export default function Campaigns({ className }: any) {
         setAllCampaignsData([])
       }
       setCampaignTab(tab)
+    } else if (tab === 'Needs Creative Refresh') {
+      //
+      const filteredListCampaigns = campaignListData2?.filter(
+        (campaign: any) => {
+          const isActiveOrPaused =
+            campaign?.status === 'ACTIVE' || campaign?.status === 'PAUSED'
+          const hasHighFrequency = campaign.frequency > 2
 
-    }else if(tab === 'Needs Creative Refresh'){
-        // 
-        const filteredListCampaigns = campaignListData2?.filter((campaign:any) => {
-          const isActiveOrPaused = campaign?.status === "ACTIVE" || campaign?.status === "PAUSED";
-          const hasHighFrequency = campaign.frequency > 2;
-          
-          return isActiveOrPaused && hasHighFrequency;
-        });
+          return isActiveOrPaused && hasHighFrequency
+        },
+      )
 
-        if(filteredListCampaigns?.length>0){
-          setListCampaigns(filteredListCampaigns)
-        }else{
-          setListCampaigns([])
-        }
-        
+      if (filteredListCampaigns?.length > 0) {
+        setListCampaigns(filteredListCampaigns)
+      } else {
+        setListCampaigns([])
+      }
 
-        setCampaignTab(tab)
+      setCampaignTab(tab)
     }
-    
   }
-
 
   return (
     <div className="container  ps-4 w-full overflow-hidden   p-6">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">All Campaigns</h1>
         <div className="flex gap-3 items-center space-x-2">
-
           {/* filter */}
           <div className="flex justify-end space-x-4">
             <DateRangePicker
@@ -312,26 +356,34 @@ export default function Campaigns({ className }: any) {
 
       {viewMode === 'card' ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {allCampaignLoading ? < CampaignGridViewSkeleton /> : (<>
-            {allCampaignsData?.map((campaign: any) => (
-              <CampaignCard
-                key={campaign.id}
-                campaign={campaign}
-                updateCampaign={""}
-                onViewDetails={() => setViewMode('list')}
-              />
-            ))}
-          </>)}
-
+          {allCampaignLoading ? (
+            <CampaignGridViewSkeleton />
+          ) : (
+            <>
+              {allCampaignsData?.map((campaign: any) => (
+                <CampaignCard
+                  key={campaign.id}
+                  campaign={campaign}
+                  updateCampaign={''}
+                  onViewDetails={() => setViewMode('list')}
+                />
+              ))}
+            </>
+          )}
         </div>
       ) : (
         // <ListView campaignsdata={allCampaignDataList} />
         <>
-          {campaignListLoading ? <CampaignsListViewSkelton /> : (<>
-            <ListView2 campaignsdata={listCampaigns} 
-            googleCampaignsData = {gCampaignAdgroup}/>
-
-          </>)}
+          {campaignListLoading ? (
+            <CampaignsListViewSkelton />
+          ) : (
+            <>
+              <ListView2
+                campaignsdata={listCampaigns}
+                googleCampaignsData={gCampaignAdgroup}
+              />
+            </>
+          )}
         </>
       )}
     </div>
@@ -356,14 +408,54 @@ function CampaignCard({
 
   const [adPlatform, setAdPlatform] = useState<'meta' | 'google'>('meta')
   const allMetrics = [
-    { label: 'Impressions', value: campaign?.insights?.data[0]?.impressions?campaign?.insights?.data[0]?.impressions:0 },
-    { label: 'Clicks', value:campaign?.insights?.data[0]?.clicks?campaign?.insights?.data[0]?.clicks:0 },
-    { label: 'CTR', value:campaign?.insights?.data[0]?.ctr?campaign?.insights?.data[0]?.ctr:0 },
-    { label: 'Conversions', value:campaign?.insights?.data[0]?.conversions?campaign?.insights?.data[0]?.conversions:0 },
-    { label: 'Cost Per Click', value:campaign?.insights?.data[0]?.cpc?campaign?.insights?.data[0]?.cpc:0 },
-    { label: 'Cost Per Conversion', value:campaign?.insights?.data[0]?.costPerConversion?campaign?.insights?.data[0]?.costPerConversion:0 },
-    { label: 'Spend', value:campaign?.insights?.data[0]?.spend?campaign?.insights?.data[0]?.spend : 0 },
-    { label: 'Leads', value:campaign?.insights?.data[0]?.conversions?campaign?.insights?.data[0]?.conversions:0 },
+    {
+      label: 'Impressions',
+      value: campaign?.insights?.data[0]?.impressions
+        ? campaign?.insights?.data[0]?.impressions
+        : 0,
+    },
+    {
+      label: 'Clicks',
+      value: campaign?.insights?.data[0]?.clicks
+        ? campaign?.insights?.data[0]?.clicks
+        : 0,
+    },
+    {
+      label: 'CTR',
+      value: campaign?.insights?.data[0]?.ctr
+        ? campaign?.insights?.data[0]?.ctr
+        : 0,
+    },
+    {
+      label: 'Conversions',
+      value: campaign?.insights?.data[0]?.conversions
+        ? campaign?.insights?.data[0]?.conversions
+        : 0,
+    },
+    {
+      label: 'Cost Per Click',
+      value: campaign?.insights?.data[0]?.cpc
+        ? campaign?.insights?.data[0]?.cpc
+        : 0,
+    },
+    {
+      label: 'Cost Per Conversion',
+      value: campaign?.insights?.data[0]?.costPerConversion
+        ? campaign?.insights?.data[0]?.costPerConversion
+        : 0,
+    },
+    {
+      label: 'Spend',
+      value: campaign?.insights?.data[0]?.spend
+        ? campaign?.insights?.data[0]?.spend
+        : 0,
+    },
+    {
+      label: 'Leads',
+      value: campaign?.insights?.data[0]?.conversions
+        ? campaign?.insights?.data[0]?.conversions
+        : 0,
+    },
   ]
 
   const handleMetricToggle = (metric: string) => {
@@ -377,46 +469,56 @@ function CampaignCard({
     })
   }
 
-
-
   return (
     <Card className="flex flex-col h-full">
       <CardHeader className=" px-6 pt-2 pb-1 space-y-0">
-        <h2 className="text-lg font-semibold">{campaign.name?.length>34?(
-          <>
-           <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button className='bg-transparent p-0 capitalize' variant="link">{campaign.name.slice(0, 34) + '...'}</Button>
-        </TooltipTrigger>
-        <TooltipContent className=' dark:bg-black dark:text-white'>
-          <p>{campaign.name}</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-          
-          </>
-          
-          ):campaign.name}</h2>
-        <div
-          
-        >
-         
-         <Badge className={`text-sm mt-1 font-medium px-2 py-1 text-[12px] rounded-full hover:${getStatusColor(
-            campaign.status,
-          )}  ${getStatusColor(
-            campaign.status,
-          )}`} variant="destructive"> {campaign.status.charAt(0).toUpperCase() + campaign.status.slice(1)}</Badge>
-         
-         
+        <h2 className="text-lg font-semibold">
+          {campaign.name?.length > 34 ? (
+            <>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      className="bg-transparent p-0 capitalize"
+                      variant="link"
+                    >
+                      {campaign.name.slice(0, 34) + '...'}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent className=" dark:bg-black dark:text-white">
+                    <p>{campaign.name}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </>
+          ) : (
+            campaign.name
+          )}
+        </h2>
+        <div>
+          <Badge
+            className={`text-sm mt-1 font-medium px-2 py-1 text-[12px] rounded-full hover:${getStatusColor(
+              campaign.status,
+            )}  ${getStatusColor(campaign.status)}`}
+            variant="destructive"
+          >
+            {' '}
+            {campaign.status.charAt(0).toUpperCase() + campaign.status.slice(1)}
+          </Badge>
         </div>
       </CardHeader>
       <CardContent className="py-1 flex-grow">
         <div className="flex justify-between items-center text-xs pb-1 mb-1">
           <div className="flex items-center  rounded-md p-1">
-            <span>{campaign.start_time?getFormattedDate(formatDate(campaign?.start_time)):''}</span>
+            <span>
+              {campaign.start_time
+                ? getFormattedDate(formatDate(campaign?.start_time))
+                : ''}
+            </span>
             <span className="px-2"> to </span>
-            <span>{formatDate(campaign?.stop_time?campaign?.stop_time:'')}</span>
+            <span>
+              {formatDate(campaign?.stop_time ? campaign?.stop_time : '')}
+            </span>
           </div>
           <Popover>
             <PopoverTrigger asChild>
@@ -460,24 +562,46 @@ function CampaignCard({
               <Metric
                 key={metric.label}
                 label={metric.label}
-                value={formatMetricValue(metric.label, (metric.value))}
+                value={formatMetricValue(metric.label, metric.value)}
                 color={getMetricColor(metric.label)}
               />
             ))}
         </div>
-        <BudgetProgress spent={campaign?.insights?.data[0]?.spend?FormatNumber(campaign?.insights?.data[0]?.spend) : 0} total={Number(campaign?.lifetime_budget)} />
+        <BudgetProgress
+          spent={
+            campaign?.insights?.data[0]?.spend
+              ? FormatNumber(campaign?.insights?.data[0]?.spend)
+              : 0
+          }
+          total={Number(campaign?.lifetime_budget)}
+        />
         <div className="flex justify-between items-center mt-2 mb-1">
           <h1 className="font-bold m-0 p-0">Ad Preview</h1>
-          <p> {adPlatform === 'meta' ? <Image src={Metaicon} height={30} width={30} alt='meta' /> : 'Google'}</p>
-
+          <p>
+            {' '}
+            {adPlatform === 'meta' ? (
+              <Image src={Metaicon} height={30} width={30} alt="meta" />
+            ) : (
+              'Google'
+            )}
+          </p>
         </div>
-        <AdPreview fbPreview={campaign?.campaignCreative} platform={adPlatform} />
+        <AdPreview
+          fbPreview={campaign?.campaignCreative}
+          platform={adPlatform}
+        />
         {/* <AIInsights /> */}
       </CardContent>
       <CardFooter className="pb-2 pt-0 px-6 flex flex-col space-y-2 mt-auto">
         <div className="flex justify-between w-full">
-          <AddCampaignBudget campaign={campaign} updateCampaign={updateCampaign} />
-          <ChangeCampaignEndDate campaign={campaign} updateCampaign={updateCampaign} />
+          <AddCampaignBudget
+            campaign={campaign}
+            updateCampaign={updateCampaign}
+          />
+          <ChangeCampaignEndDate
+            campaign={campaign}
+            updateCampaign={updateCampaign}
+          />
           <EditCampaignSettings
             campaign={campaign}
             updateCampaign={updateCampaign}
@@ -498,7 +622,8 @@ function BudgetProgress({ spent, total }: any) {
       <div className="flex justify-between text-xs  mb-1">
         <span>Spend vs Budget </span>
         <span>
-         ₹{FormatNumber(Math.round(Number(spent)))} / ₹{FormatNumber(Math.round(Number(total)))}
+          ₹{FormatNumber(Math.round(Number(spent)))} / ₹
+          {FormatNumber(Math.round(Number(total)))}
         </span>
       </div>
       <Progress value={percentage} className="h-1" />

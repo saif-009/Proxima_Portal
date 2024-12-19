@@ -13,17 +13,19 @@ export const fetchCampaignsData = async (date:any) => {
 
 //   
 
-export const fetchListCampaignsData = async (date:any) => {
+export const fetchListCampaignsData = async (date: any) => {
     const body = {
       start_date: format(date?.from, 'yyyy-MM-dd'),
       end_date: format(date?.to, 'yyyy-MM-dd'),
     };
-    const res = await Axios.get('/list-view-campaign', {
+    const res = await Axios.get('/campaigns/list_view', {
       params: {
         date_start: body?.start_date,
         date_stop: body?.end_date,
       },
     });
+  console.log('campaigns list data for proxima data',res?.data?.data)
+    
     return res?.data?.data;
   };
 

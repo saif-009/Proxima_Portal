@@ -5,10 +5,10 @@ import { useQuery } from '@tanstack/react-query'
 import Details from './Details'
 
 function UserDetails({ userData }: any) {
-  const { data: memberRole, isLoading, error } = useQuery({
-    queryKey: ['userRoles'],
-    queryFn: () => fetchUserRoles(),
-  })
+  // const { data: memberRole, isLoading, error } = useQuery({
+  //   queryKey: ['userRoles'],
+  //   queryFn: () => fetchUserRoles(),
+  // })
 
   return (
     <>

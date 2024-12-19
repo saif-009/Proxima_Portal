@@ -42,7 +42,7 @@ const navItems = [
 export default function Component({ className = '' }) {
 
   const [isCollapsed, setIsCollapsed] = useState(false)
-  const { theme, systemTheme } = useTheme()
+  const { theme, systemTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const router = useRouter()
   const pathName = usePathname()
@@ -55,17 +55,20 @@ export default function Component({ className = '' }) {
   // Handle mounting state
   useEffect(() => {
     setMounted(true)
+     if (theme === 'system') {
+    setTheme('dark')
+  }
   }, [])
 
   const onLogout = () => {
-    Cookies.remove('token')
-    router.push('/login')
+    Cookies.remove('seller_token')
+    router.push('/')
     window.location.reload()
   }
   const toggleSidebar = () => setIsCollapsed(!isCollapsed)
 
   // Get the current theme considering system preference
-  const currentTheme = theme === 'system' ? systemTheme : theme
+  const currentTheme = theme === 'system' ? 'dark' : theme
 
   // Don't render theme-dependent content until mounted
   if (!mounted) {
